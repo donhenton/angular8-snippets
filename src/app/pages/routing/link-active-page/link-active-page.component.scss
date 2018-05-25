@@ -1,0 +1,21 @@
+.emphasis
+{
+
+    font-family: Roboto, Arial, Sans-Serif;
+    font-size: 18px;
+    font-weight: 700;
+}
+ 
+a 
+{
+    text-decoration: none;
+    &:hover
+    {
+        text-decoration: underline;
+    }
+}
+
+li
+{
+    line-height: 45px;
+}

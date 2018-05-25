@@ -1,0 +1,69 @@
+<div class="row">
+
+  <div class="column50Left sep-indicator">
+    <h3>Attribute Directive</h3>
+    <p class="row">
+      The menu system above is an example of a Custom Directive
+    </p>
+  </div>
+
+  <div class="column50Right">
+    <h3>Loops, Setting CSS</h3>
+
+
+
+    <div class="row">
+
+      <div class="column50Left">
+        <ul class="base-list">
+          <li *loopCopy="repeatValue">
+            {{info}}
+          </li>
+        </ul>
+
+      </div>
+      <div class="column50Right form">
+        <h4>Loop Count</h4>
+        <br>
+        <select name="copyNumber" [(ngModel)]="repeatValue" id="copyNumber">
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+          <option>6</option>
+        </select>
+      </div>
+    </div>
+
+    
+  </div>
+
+  <div class="row">
+      <div class="column50Left">
+        <h3>Text Expansion Directive</h3>
+
+        <div class="well">
+            <div appTextExpansion (onExpand)="onExpandHandler($event)" linkCssClass="expand-link-display" textCssClass="text-highlight" length="25">This is extra text that will be expanded or contracted 
+              if you click on the more link that will be automatically added by the directive. In its
+              infinite wisdom.
+            </div>
+            <p>&nbsp;</p>
+            <div appTextExpansion linkCssClass="expand-link-display" textCssClass="text-highlight" length="45">no expand link here, not long enough
+            </div>
+            <p>&nbsp;</p>
+            <div appTextExpansion  (onExpand)="onExpandHandler($event)"  length="65"> 
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            </div>
+        </div>
+      </div>
+
+      <div class="column50Right">
+        <h3>Expansion Activity</h3>
+
+        <div class="well">
+             {{expansionStatus}}
+        </div>
+      </div>
+
+
+    </div>

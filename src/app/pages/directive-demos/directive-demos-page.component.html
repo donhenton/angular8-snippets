@@ -1,0 +1,111 @@
+<h3>Standard Directive Demos</h3>
+
+<div class="row">
+
+  <div class="column50Left sep-indicator">
+    <h4>Loops, Setting CSS</h4>
+
+    <div class="row">
+      <ul class="base-list">
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Index</th>
+              <th>Text</th>
+              <th>Even/Odd</th>
+
+            </tr>
+          </thead>
+
+          <tbody>
+
+            <tr [class.odd_row]="isOdd" *ngFor="let item of loopItems;  let k = index;let isOdd=odd; let isEven=even">
+              <td>{{k}}</td>
+              <td>{{item.text}}</td>
+              <td>{{isEven}}/{{isOdd}}</td>
+            </tr>
+          </tbody>
+        </table>
+
+      </ul>
+
+    </div>
+
+  </div>
+
+  <div class="column50Right">
+
+    <h4>Events, CSS Updating</h4>
+
+    <div class="row">
+      
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Index</th>
+              <th>Text</th>
+              <th>Even/Odd</th>
+
+            </tr>
+          </thead>
+
+          <tbody>
+
+            <tr [ngClass]="computeCss(k,isOdd)" *ngFor="let item of loopItems;  let k = index;let isOdd=odd; let isEven=even">
+              <td>{{k}}</td>
+              <td>{{item.text}}</td>
+              <td>{{isEven}}/{{isOdd}}</td>
+            </tr>
+          </tbody>
+        </table>
+
+     
+
+    </div>
+    <div class="row">
+      <button (click)="flipRowHighlighting()" class="btn btn-primary">Update Row Highlighting</button>
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<div class="row">
+
+  <div class="column50Left  sep-indicator">
+    <h4>Switch and If</h4>
+    <div class="row grouping">
+      <div class="pull-left">
+        <div *ngIf="ifIndicator">If Is true</div>
+        <div *ngIf="!ifIndicator">If Is false</div>
+      </div>
+      <div class="pull-right">
+        <div ngSwitch="{{switchState}}">
+          <div *ngSwitchCase="'1'" [ngClass]="'one'">Switch is 1</div>
+          <div *ngSwitchCase="'2'" [ngClass]="'two'">Switch is 2</div>
+          <div *ngSwitchCase="'0'" [ngClass]="'zero'">Switch is 0</div>
+          <div *ngSwitchDefault>Switch default</div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <button (click)="doIfChange()" class="btn btn-primary">Change by If</button>
+      <button (click)="doSwitchChange()" class="pull-right btn btn-primary">Change by Switch</button>
+    </div>
+  </div>
+  <div class="column50Right">
+    <h4>Emitter Events</h4>
+    <div class="row grouping">
+      {{eventText}}
+    </div>
+    <div class="row grouping">
+      <app-event-button  (eventItem)="handleEvent($event)"   [baseText]="'informative'"></app-event-button>
+    </div>
+      
+  </div>
+
+</div>

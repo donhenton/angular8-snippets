@@ -1,0 +1,47 @@
+@import "./../../../sass/components/typography";
+
+tr
+{ 
+    &.odd_row
+    {
+        background-color: $red-color;
+        color: $white-color;
+
+        &.flip_true
+        {
+            background-color: $blue-color;
+            color: $white-color;
+        }
+
+        &.flip_false
+        {
+            background-color: $red-color;
+            color: $white-color;
+        }
+
+    }
+
+    &.even_row
+    {
+        
+
+        &.flip_true
+        {
+            background-color: $red-color;
+            color: $white-color;
+        }
+
+        &.flip_false
+        {
+            background-color: $blue-color;
+            color: $white-color;
+        }
+
+    }
+
+}
+.sep-indicator
+{
+    border-right: 2px solid $green-color;
+}
+ 

@@ -1,0 +1,43 @@
+<h3>Includes</h3>
+
+<div class="row">
+
+Including html and components using ng-include
+
+</div>
+
+
+
+<div class="row">
+
+<app-include-consumer>
+
+      <span class="select-1">From Supplier group1 #1 (Supplier is include-page.component)</span>
+      <span class="select-2">From Supplier group2 #2 (Supplier is include-page.component)</span>
+
+      <div class="compute-content">
+      
+       <table class="table">
+          <thead>
+            <tr>
+              <th>Index</th>
+              <th>Text</th>
+              <th>Even/Odd</th>
+
+            </tr>
+          </thead>
+
+          <tbody>
+
+            <tr   *ngFor="let item of loopItems;  let k = index;let isOdd=odd; let isEven=even">
+              <td>{{k}}</td>
+              <td>{{item.text}}</td>
+              <td>{{isEven}}/{{isOdd}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+</app-include-consumer>
+
+</div>
