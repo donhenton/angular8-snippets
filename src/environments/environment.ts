@@ -8,4 +8,5 @@ export const environment = {
   production: false,
   securityAPIURL: 'http://localhost:9000/sec/',
   birtAPIURL: 'http://localhost:9000/birt/',
+  swaggerUrl: 'http://localhost:9000/swagger-ui.html'
 };
