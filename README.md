@@ -27,7 +27,8 @@ Steps are below:
 * clone https://github.com/donhenton/angular4-snippets.git into the snippet-staging folder
 * at this point, snippet-staging should have two folders angular4-snippets and public html
 * cd into snippets-staging/angular4-snippets
-* git checkout -t remotes/origin/gh-pages
+* git checkout -t remotes/origin/gh-pages (to checkout existing gh-pages branch)
+* __git checkout -b gh-pages__ then __git push --set-upstream origin gh-pages__ to create the gh-pages branch first time
 * replace snippet-staging/angular4-snippets/public_html with snippet-staging/public_html
 * commit and push
 
