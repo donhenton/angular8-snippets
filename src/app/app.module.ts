@@ -32,6 +32,7 @@ import { BirtDemoComponent } from './pages/reactive-demos/birt-demo/birt-demo.co
 import { BirtService } from './pages/reactive-demos/support/birtService';
 import { TabDemoComponent } from './pages/tab-demo/tab-demo.component';
 import { ResusableModule } from './modules/reusable/resusable.module';
+import { ToolTipPageComponent } from './pages/tool-tip/tool-tip-page.component';
 
 
 // https://juristr.com/blog/2017/07/ng2-dynamic-tab-component/
@@ -53,6 +54,7 @@ const appRoutes: Routes = [
   { path: 'udemy/templateForm', component: TemplateFormComponent },
   { path: 'udemy/reactiveForm', component: ReactiveFormComponent },
   { path: 'custom/directives', component: CustomDirectivePageComponent },
+  { path: 'custom/tool-tips', component: ToolTipPageComponent },
   { path: 'routing/linkActive', component: LinkActivePageComponent },
   { path: 'routing/linkActive/queryRoute', component: QueryRoutePageComponent },
   { path: 'routing/linkActive/queryRoute/:alpha/:beta', component: QueryRoutePageComponent },
@@ -94,7 +96,8 @@ const appRoutes: Routes = [
     ReactiveFormComponent,
     SimpleReactiveComponent,
     TabDemoComponent,
-    BirtDemoComponent
+    BirtDemoComponent,
+    ToolTipPageComponent
   ],
   imports: [
     FormsModule,
