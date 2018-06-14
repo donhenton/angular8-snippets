@@ -1,7 +1,9 @@
 import {
   Directive, ElementRef,
-  ComponentFactoryResolver, ApplicationRef, Injector, HostListener, Input
+  ComponentFactoryResolver, ApplicationRef, Injector,
+  HostListener, Input, EmbeddedViewRef
 } from '@angular/core';
+import { DisplayItemComponent } from './display-item/display-item/display-item.component';
 
 
 export interface ToolTipItem {
@@ -16,9 +18,14 @@ export interface ToolTipItem {
 @Directive({
   selector: '[appToolTip]'
 })
-export class ToolTipsDirective {
+export class ToolTipsDirective  {
+
+
 
   _options = {};
+  displayRef: any
+  firstTime = false;
+  _toolTipValue = '';
 
 
   constructor(private elementRef: ElementRef,
@@ -34,16 +41,30 @@ export class ToolTipsDirective {
     }
   }
 
-    /* tslint:disable:no-input-rename */
-    @Input('appToolTip') set toolTipValue(value: string) {
-      this._options['toolTipValue'] = value;
-    }
-    /* tslint:enable */
+  /* tslint:disable:no-input-rename */
+  @Input('appToolTip') set toolTipValue(value: string) {
+    this._toolTipValue = value;
+  }
+  /* tslint:enable */
+
+  get toolTipValue() {
+    return this._toolTipValue;
+  }
+
+  getElementRef() {
+    return this.elementRef;
+  }
 
 
   @HostListener('focusin')
   @HostListener('mouseenter')
   onMouseEnter() {
+
+    if (this.firstTime === false) {
+      this.firstTime = true;
+      this.appendItemComponentToBody();
+    }
+    this.displayRef.instance.showToolTip();
     // if (this.isDisplayOnHover === false) {
     //  return;
     // }
@@ -57,20 +78,35 @@ export class ToolTipsDirective {
     // if (this.options['trigger'] === 'hover') {
     // this.destroyTooltip();
     // }
-    console.log('mouse leave')
+    // console.log('mouse leave');
+    this.displayRef.instance.hideToolTip();
   }
 
   @HostListener('click', ['$event'])
-  onClick() {
-    // if (this.isDisplayOnClick === false) {
-    // return;
-    // }
-
-    // this.show();
-
-    // this.hideAfterClickTimeoutId = window.setTimeout(() => {
-    //   this.destroyTooltip();
-    // }, 0);
+  onClick(ev) {
+    // console.log(`click ${ev.target}`)
   }
+
+
+
+  appendItemComponentToBody(): void {
+
+    this.displayRef = this.componentFactoryResolver
+      .resolveComponentFactory(DisplayItemComponent)
+      .create(this.injector);
+
+    this.appRef.attachView(this.displayRef.hostView);
+    const domElem = (this.displayRef.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;
+    document.body.appendChild(domElem);
+    this.displayRef.instance.options = this._options;
+    this.displayRef.instance.displayText = this._toolTipValue;
+    this.displayRef.instance.directiveRef = this;
+    this.displayRef.instance.showToolTip();
+
+  }
+
+
+
+
 
 }
