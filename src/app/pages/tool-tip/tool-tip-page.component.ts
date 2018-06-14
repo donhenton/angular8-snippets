@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ToolTipPageComponent implements OnInit {
 
-  sampleText = 'smurfs <em><b>are</b></em> forever';
+  sampleText = 'smurfs are <em><b>really</b></em> cool because they are blue';
   constructor() { }
 
   ngOnInit() {

@@ -1,7 +1,7 @@
 import {
   Directive, ElementRef,
   ComponentFactoryResolver, ApplicationRef, Injector,
-  HostListener, Input, EmbeddedViewRef
+  HostListener, Input, EmbeddedViewRef, AfterContentInit
 } from '@angular/core';
 import { DisplayItemComponent } from './display-item/display-item/display-item.component';
 
@@ -18,7 +18,8 @@ export interface ToolTipItem {
 @Directive({
   selector: '[appToolTip]'
 })
-export class ToolTipsDirective  {
+export class ToolTipsDirective implements AfterContentInit {
+
 
 
 
@@ -33,6 +34,18 @@ export class ToolTipsDirective  {
     private appRef: ApplicationRef,
     private injector: Injector) {
   }
+
+
+  ngAfterContentInit(): void {
+    if (this.firstTime === false) {
+      this.firstTime = true;
+       window.setTimeout(() => {
+        this.appendItemComponentToBody();
+      }, 10);
+
+    }
+  }
+
 
 
   @Input('placement') set placement(value: string) {
@@ -60,10 +73,7 @@ export class ToolTipsDirective  {
   @HostListener('mouseenter')
   onMouseEnter() {
 
-    if (this.firstTime === false) {
-      this.firstTime = true;
-      this.appendItemComponentToBody();
-    }
+
     this.displayRef.instance.showToolTip();
     // if (this.isDisplayOnHover === false) {
     //  return;
@@ -101,7 +111,16 @@ export class ToolTipsDirective  {
     this.displayRef.instance.options = this._options;
     this.displayRef.instance.displayText = this._toolTipValue;
     this.displayRef.instance.directiveRef = this;
-    this.displayRef.instance.showToolTip();
+    this.displayRef.instance.setPosition();
+
+    // console.log(this.displayRef.instance.elementRef.nativeElement.getBoundingClientRect());
+
+    // ngAfterContentChecked() {
+    //   console.log(this.elementRef.nativeElement.getBoundingClientRect());
+
+
+
+
 
   }
 

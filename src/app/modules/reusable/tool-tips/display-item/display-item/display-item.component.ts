@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, HostBinding, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, HostBinding, ElementRef, AfterViewInit, ViewChild, AfterContentChecked } from '@angular/core';
 import { ToolTipsDirective } from '../../tool-tips.directive';
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -19,20 +19,26 @@ export class DisplayItemComponent implements OnInit {
 
   doDisplay = false;
 
+  // @ViewChild('myIdentifier')
+  // myIdentifier: ElementRef;
+
   constructor(private elementRef: ElementRef, private _sanitizer: DomSanitizer) { }
 
   ngOnInit() {
 
   }
 
-
   getStyle(type) {
+    if (!this.doDisplay) {
+      return '-550px'
 
+    }
 
-     if (type === 'top') {
-       return this.styleTop;
-     }
-     return this.styleLeft;
+    // console.log('1')
+    if (type === 'top') {
+      return this.styleTop;
+    }
+    return this.styleLeft;
 
   }
 
@@ -40,15 +46,18 @@ export class DisplayItemComponent implements OnInit {
   setPosition(): void {
 
     const directEv = this._directiveRef.getElementRef().nativeElement;
-    const directiveHeight = directEv.offsetHeight;
-    const directiveWidth = directEv.offsetWidth;
+    const directiveRect = directEv.getBoundingClientRect();
+    const directiveHeight = directiveRect.height;
+    const directiveWidth = directiveRect.width;
     const directiveTop = directEv.offsetTop;
     const directiveLeft = directEv.offsetLeft;
 
-    const tooltipHeight = this.elementRef.nativeElement.clientHeight;
-    const tooltipWidth = this.elementRef.nativeElement.offsetWidth;
+
     const scrollY = window.pageYOffset;
     const tooltip = this.elementRef.nativeElement;
+    const tooltipHeight = tooltip.firstElementChild.clientHeight;
+    const tooltipWidth = tooltip.firstElementChild.clientWidth;
+
 
     const placement = this.options['placement'];
     const elementPosition = { top: directiveTop, left: directiveLeft }
@@ -57,33 +66,33 @@ export class DisplayItemComponent implements OnInit {
 
 
     if (placement === 'top') {
-       tTop = (elementPosition.top + scrollY) - (tooltipHeight + this.tooltipOffset)  ;
+      tTop = (elementPosition.top + scrollY) - (tooltipHeight + this.tooltipOffset);
+
     }
 
     if (placement === 'bottom') {
-      tTop = (elementPosition.top + scrollY) + directiveHeight + this.tooltipOffset  ;
+      tTop = (elementPosition.top + scrollY) + directiveHeight + this.tooltipOffset;
     }
 
     if (placement === 'top' || placement === 'bottom') {
-      tLeft = (elementPosition.left + directiveWidth / 2) - tooltipWidth / 2  ;
+      tLeft = (elementPosition.left + directiveWidth / 2) - tooltipWidth / 2;
     }
 
     if (placement === 'left') {
-      tLeft = elementPosition.left - tooltipWidth - this.tooltipOffset  ;
+      tLeft = elementPosition.left - tooltipWidth - this.tooltipOffset;
     }
 
     if (placement === 'right') {
-      tLeft = elementPosition.left + directiveWidth + this.tooltipOffset  ;
+      tLeft = elementPosition.left + directiveWidth + this.tooltipOffset;
     }
 
     if (placement === 'left' || placement === 'right') {
-      tTop = (elementPosition.top + scrollY) + directiveHeight / 2 - tooltip.clientHeight / 2  ;
+      tTop = (elementPosition.top + scrollY) + directiveHeight / 2 - tooltip.clientHeight / 2;
     }
-   // tTop = tTop + directiveTop;
-   // tLeft = tLeft + directiveLeft;
+
     this.styleLeft = tLeft + 'px';
     this.styleTop = tTop + 'px';
-    console.log(` style top ${ this.styleTop} left ${ this.styleLeft}`)
+    // console.log(` style top ${ this.styleTop} left ${ this.styleLeft}`)
   }
 
 
@@ -91,8 +100,6 @@ export class DisplayItemComponent implements OnInit {
     this._directiveRef = v;
 
   }
-
-
 
   set displayText(v: any) {
     this._displayText = v;
@@ -113,8 +120,9 @@ export class DisplayItemComponent implements OnInit {
   }
 
   showToolTip() {
-    this.setPosition()
+
     this.doDisplay = true;
+    this.setPosition();
   }
 
   hideToolTip() {
@@ -122,10 +130,10 @@ export class DisplayItemComponent implements OnInit {
   }
 
   computeClass() {
-    let css = 'tooltip-item';
-    if (this.doDisplay === false) {
-      css = css + ' hidden';
-    }
+    const css = 'tooltip-item';
+    // if (!this.doDisplay)  {
+    //   css = css + ' dont-show';
+    // }
 
     return css;
 
