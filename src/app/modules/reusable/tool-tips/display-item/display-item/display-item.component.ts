@@ -12,7 +12,7 @@ export class DisplayItemComponent implements OnInit {
   _options = {};
   _displayText = 'initial';
   _directiveRef: ToolTipsDirective;
-  tooltipOffset = 7;
+  tooltipOffset = 15;
   styleLeft = '';
   styleTop = '';
 
@@ -30,11 +30,10 @@ export class DisplayItemComponent implements OnInit {
 
   getStyle(type) {
     if (!this.doDisplay) {
-      return '-550px'
+      return '-1550px'
 
     }
 
-    // console.log('1')
     if (type === 'top') {
       return this.styleTop;
     }
@@ -92,7 +91,7 @@ export class DisplayItemComponent implements OnInit {
 
     this.styleLeft = tLeft + 'px';
     this.styleTop = tTop + 'px';
-    // console.log(` style top ${ this.styleTop} left ${ this.styleLeft}`)
+
   }
 
 
@@ -130,10 +129,11 @@ export class DisplayItemComponent implements OnInit {
   }
 
   computeClass() {
-    const css = 'tooltip-item';
-    // if (!this.doDisplay)  {
-    //   css = css + ' dont-show';
-    // }
+    const custom = this.options['customClass'];
+    let css = 'tooltip-item';
+    if (custom) {
+      css = css + ' ' + custom;
+    }
 
     return css;
 

@@ -1,9 +1,15 @@
 .tooltip-item {
-
- padding: 5px;
- border: 4px double $green-color;
- background-color: tan;
- color: $blue-color;
- width: 100px;
-
+  padding: 5px;
+  border: 4px double $green-color;
+  background-color: tan;
+  color: $blue-color;
+  &.new-tooltip {
+    padding: 10px;
+    border: 2px outset yellow;
+    background-color: red;
+    color: yellow;
+    box-shadow: 7px 3px 3px 3px rgba(0, 0, 0, 0.6);
+    width: 150px;
+    border-radius: 15px;
+  }
 }

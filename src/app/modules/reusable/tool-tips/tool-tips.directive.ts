@@ -39,14 +39,18 @@ export class ToolTipsDirective implements AfterContentInit {
   ngAfterContentInit(): void {
     if (this.firstTime === false) {
       this.firstTime = true;
-       window.setTimeout(() => {
+      window.setTimeout(() => {
         this.appendItemComponentToBody();
       }, 10);
 
     }
   }
 
-
+  @Input('customClass') set customClass(value: string) {
+    if (value) {
+      this._options['customClass'] = value;
+    }
+  }
 
   @Input('placement') set placement(value: string) {
     if (value) {
