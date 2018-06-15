@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DisplayItemComponent } from './display-item.component';
+import { KeepHtmlPipe } from '../../../keep-html/keep-html';
+
 
 describe('DisplayItemComponent', () => {
   let component: DisplayItemComponent;
@@ -8,7 +10,8 @@ describe('DisplayItemComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DisplayItemComponent ]
+      declarations: [ DisplayItemComponent, KeepHtmlPipe ]
+
     })
     .compileComponents();
   }));

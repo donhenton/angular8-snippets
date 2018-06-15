@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ToolTipPageComponent } from './tool-tip-page.component';
+import { ResusableModule } from '../../modules/reusable/resusable.module';
 
 describe('ToolTipComponent', () => {
   let component: ToolTipPageComponent;
@@ -8,6 +9,7 @@ describe('ToolTipComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [ResusableModule],
       declarations: [ ToolTipPageComponent ]
     })
     .compileComponents();

@@ -35,7 +35,7 @@ export class TabsComponent implements OnInit, AfterContentInit {
     const activeTabs = this.tabs.filter((tab) => tab.active);
 
     // if there is no active tab set, activate the first
-    if (activeTabs.length === 0) {
+    if (activeTabs.length === 0 && this.tabs && this.tabs.first) {
       this.selectTab(null, this.tabs.first);
     }
   }

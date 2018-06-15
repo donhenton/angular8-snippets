@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SimpleReactiveComponent } from './simple-reactive.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
+import { BrowserModule } from '@angular/platform-browser';
 
 describe('SimpleReactiveComponent', () => {
   let component: SimpleReactiveComponent;
@@ -8,6 +11,12 @@ describe('SimpleReactiveComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        FormsModule,
+        HttpModule,
+        ReactiveFormsModule,
+        BrowserModule,
+      ],
       declarations: [ SimpleReactiveComponent ]
     })
     .compileComponents();
