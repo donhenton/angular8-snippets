@@ -15,6 +15,7 @@ export class DisplayItemComponent implements OnInit {
   _offset = 15;
   styleLeft = '';
   styleTop = '';
+  triangleTransform = `translate(5,5) rotate(45)`;
 
 
   doDisplay = false;
@@ -93,11 +94,12 @@ export class DisplayItemComponent implements OnInit {
     }
 
     if (placement === 'left' || placement === 'right') {
-      tTop = (elementPosition.top + scrollY) + directiveHeight / 2 - tooltip.clientHeight / 2;
+      tTop = (elementPosition.top + scrollY) + directiveHeight / 2 - tooltipHeight / 2;
     }
 
     this.styleLeft = tLeft + 'px';
     this.styleTop = tTop + 'px';
+    this.computeTriangleTransform(tTop, tLeft, placement, tooltipWidth, tooltipHeight);
 
   }
 
@@ -140,6 +142,35 @@ export class DisplayItemComponent implements OnInit {
     let css = 'tooltip-item';
     if (custom) {
       css = css + ' ' + custom;
+    }
+
+    return css;
+
+  }
+
+  /**
+   *
+   * @param top where the box is placed
+   * @param left where the box is placed
+   * @param placement top, left, right, bottom
+   * @param tooltipWidth box width
+   * @param tooltipHeight box height
+   *
+   * will compute the svg transform ih the form
+   */
+  private computeTriangleTransform(top, left, placement, tooltipWidth, tooltipHeight) {
+
+  }
+
+  reportTriangleTransform() {
+
+    return this.triangleTransform;
+  }
+
+  computeTriangleClass() {
+    const css = 'tooltip-item-triangle';
+    if (!this.doDisplay) {
+     // css = css + ' hidden' ;
     }
 
     return css;
