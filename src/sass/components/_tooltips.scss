@@ -1,11 +1,11 @@
  
   .tooltip-item-triangle {
 
-    fill: green;
+    fill: tan
   }
   .tooltip-item {
     padding: 5px;
-    border: 4px double $green-color;
+   // border: 4px double $green-color;
     background-color: tan;
     color: $blue-color;
     &.new-tooltip {

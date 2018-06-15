@@ -14,12 +14,12 @@ export class DisplayItemComponent implements OnInit {
   _options = {};
   _displayText = 'initial';
   _directiveRef: ToolTipsDirective;
-  _offset = 15;
+  _offset = 20;
   styleLeftNumber = 0;
   styleTopNumber = 0;
   triangleLeftNumber = 0;
   triangleTopNumber = 0;
-  polygonPoints= ''
+  polygonPoints = ''
 
   svgSize = { width: 2 * TRIANGLE_WIDTH, height: 2 * TRIANGLE_WIDTH }
   triangleTransform = '';
@@ -32,7 +32,7 @@ export class DisplayItemComponent implements OnInit {
 
     this.polygonPoints = `0,0 ${TRIANGLE_WIDTH},0  ${TRIANGLE_WIDTH / 2},${TRIANGLE_WIDTH}`
 
-   }
+  }
 
   ngOnInit() {
 
@@ -52,22 +52,17 @@ export class DisplayItemComponent implements OnInit {
   }
 
   getTriangleStyle(type) {
-    // if (!this.doDisplay) {
-    //   return '-1550px'
-
-    // }
+    if (!this.doDisplay) {
+      return '-1550px'
+    }
 
     if (type === 'top') {
 
-
-
       return (this.styleTopNumber + this.triangleTopNumber) + 'px';
-
-
 
     }
     return (this.styleLeftNumber + this.triangleLeftNumber) + 'px';
-    // return '140px'
+
 
   }
 
@@ -106,32 +101,33 @@ export class DisplayItemComponent implements OnInit {
 
     if (placement === 'top') {
       tTop = (elementPosition.top + scrollY) - (tooltipHeight + this.offset);
-     // this.triangleTopNumber = (tooltipHeight / 2)
-     // this.triangleLeftNumber = (tooltipWidth / 2)
+      this.triangleTopNumber = (tooltipHeight - TRIANGLE_WIDTH)
+      this.triangleLeftNumber = tooltipWidth / 2 - TRIANGLE_WIDTH
     }
 
     if (placement === 'bottom') {
       tTop = (elementPosition.top + scrollY) + directiveHeight + this.offset;
-        this.triangleTopNumber = -(tooltipHeight - TRIANGLE_WIDTH  / 2)
-       this.triangleLeftNumber = (tooltipWidth - TRIANGLE_WIDTH) / 2
+      //  this.triangleTopNumber = (- tooltipHeight + TRIANGLE_WIDTH / 2) - 8;
+      this.triangleTopNumber = - tooltipHeight + 2;
+      this.triangleLeftNumber = tooltipWidth / 2 - TRIANGLE_WIDTH
     }
 
     if (placement === 'top' || placement === 'bottom') {
       tLeft = (elementPosition.left + directiveWidth / 2) - tooltipWidth / 2;
-      this.triangleTopNumber =  (tooltipHeight - TRIANGLE_WIDTH )
-      this.triangleLeftNumber = tooltipWidth / 2 - TRIANGLE_WIDTH
+
     }
 
     if (placement === 'left') {
       tLeft = elementPosition.left - tooltipWidth - this.offset;
-    //  this.triangleTopNumber = (tooltipHeight) / 2
+      this.triangleTopNumber = tooltipHeight / 2 - TRIANGLE_WIDTH
+      this.triangleLeftNumber = tooltipWidth - TRIANGLE_WIDTH;
     }
 
     if (placement === 'right') {
       tLeft = elementPosition.left + directiveWidth + this.offset;
-       this.triangleLeftNumber = - TRIANGLE_WIDTH;
+      this.triangleLeftNumber = - TRIANGLE_WIDTH;
       this.triangleTopNumber = tooltipHeight / 2 - TRIANGLE_WIDTH
-      console.log(tooltipHeight )
+
 
 
     }
@@ -141,8 +137,8 @@ export class DisplayItemComponent implements OnInit {
 
     }
 
-    this.styleLeftNumber = tLeft  ;
-    this.styleTopNumber = tTop  ;
+    this.styleLeftNumber = tLeft;
+    this.styleTopNumber = tTop;
 
 
     this.computeTriangleTransform(placement);
