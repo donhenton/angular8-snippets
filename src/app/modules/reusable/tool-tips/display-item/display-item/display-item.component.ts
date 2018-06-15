@@ -2,6 +2,8 @@ import { Component, OnInit, Input, HostBinding, ElementRef, AfterViewInit, ViewC
 import { ToolTipsDirective } from '../../tool-tips.directive';
 import { DomSanitizer } from '@angular/platform-browser';
 
+const TRIANGLE_WIDTH = 16;
+
 @Component({
   selector: 'app-display-item',
   templateUrl: './display-item.component.html',
@@ -13,15 +15,24 @@ export class DisplayItemComponent implements OnInit {
   _displayText = 'initial';
   _directiveRef: ToolTipsDirective;
   _offset = 15;
-  styleLeft = '';
-  styleTop = '';
-  triangleTransform = `translate(5,5) rotate(45)`;
+  styleLeftNumber = 0;
+  styleTopNumber = 0;
+  triangleLeftNumber = 0;
+  triangleTopNumber = 0;
+  polygonPoints= ''
+
+  svgSize = { width: 2 * TRIANGLE_WIDTH, height: 2 * TRIANGLE_WIDTH }
+  triangleTransform = '';
 
 
   doDisplay = false;
 
 
-  constructor(private elementRef: ElementRef, private _sanitizer: DomSanitizer) { }
+  constructor(private elementRef: ElementRef, private _sanitizer: DomSanitizer) {
+
+    this.polygonPoints = `0,0 ${TRIANGLE_WIDTH},0  ${TRIANGLE_WIDTH / 2},${TRIANGLE_WIDTH}`
+
+   }
 
   ngOnInit() {
 
@@ -34,9 +45,29 @@ export class DisplayItemComponent implements OnInit {
     }
 
     if (type === 'top') {
-      return this.styleTop;
+      return this.styleTopNumber + 'px';
     }
-    return this.styleLeft;
+    return this.styleLeftNumber + 'px';
+
+  }
+
+  getTriangleStyle(type) {
+    // if (!this.doDisplay) {
+    //   return '-1550px'
+
+    // }
+
+    if (type === 'top') {
+
+
+
+      return (this.styleTopNumber + this.triangleTopNumber) + 'px';
+
+
+
+    }
+    return (this.styleLeftNumber + this.triangleLeftNumber) + 'px';
+    // return '140px'
 
   }
 
@@ -62,8 +93,8 @@ export class DisplayItemComponent implements OnInit {
 
     const scrollY = window.pageYOffset;
     const tooltip = this.elementRef.nativeElement;
-    const tooltipHeight = tooltip.firstElementChild.clientHeight;
-    const tooltipWidth = tooltip.firstElementChild.clientWidth;
+    const tooltipHeight = tooltip.lastElementChild.clientHeight;
+    const tooltipWidth = tooltip.lastElementChild.clientWidth;
 
 
     const placement = this.options['placement'];
@@ -72,34 +103,49 @@ export class DisplayItemComponent implements OnInit {
     let tTop = 0;
 
 
+
     if (placement === 'top') {
       tTop = (elementPosition.top + scrollY) - (tooltipHeight + this.offset);
-
+     // this.triangleTopNumber = (tooltipHeight / 2)
+     // this.triangleLeftNumber = (tooltipWidth / 2)
     }
 
     if (placement === 'bottom') {
       tTop = (elementPosition.top + scrollY) + directiveHeight + this.offset;
+        this.triangleTopNumber = -(tooltipHeight - TRIANGLE_WIDTH  / 2)
+       this.triangleLeftNumber = (tooltipWidth - TRIANGLE_WIDTH) / 2
     }
 
     if (placement === 'top' || placement === 'bottom') {
       tLeft = (elementPosition.left + directiveWidth / 2) - tooltipWidth / 2;
+      this.triangleTopNumber =  (tooltipHeight - TRIANGLE_WIDTH )
+      this.triangleLeftNumber = tooltipWidth / 2 - TRIANGLE_WIDTH
     }
 
     if (placement === 'left') {
       tLeft = elementPosition.left - tooltipWidth - this.offset;
+    //  this.triangleTopNumber = (tooltipHeight) / 2
     }
 
     if (placement === 'right') {
       tLeft = elementPosition.left + directiveWidth + this.offset;
+       this.triangleLeftNumber = - TRIANGLE_WIDTH;
+      this.triangleTopNumber = tooltipHeight / 2 - TRIANGLE_WIDTH
+      console.log(tooltipHeight )
+
+
     }
 
     if (placement === 'left' || placement === 'right') {
       tTop = (elementPosition.top + scrollY) + directiveHeight / 2 - tooltipHeight / 2;
+
     }
 
-    this.styleLeft = tLeft + 'px';
-    this.styleTop = tTop + 'px';
-    this.computeTriangleTransform(tTop, tLeft, placement, tooltipWidth, tooltipHeight);
+    this.styleLeftNumber = tLeft  ;
+    this.styleTopNumber = tTop  ;
+
+
+    this.computeTriangleTransform(placement);
 
   }
 
@@ -150,31 +196,61 @@ export class DisplayItemComponent implements OnInit {
 
   /**
    *
-   * @param top where the box is placed
-   * @param left where the box is placed
    * @param placement top, left, right, bottom
-   * @param tooltipWidth box width
-   * @param tooltipHeight box height
-   *
-   * will compute the svg transform ih the form
-   */
-  private computeTriangleTransform(top, left, placement, tooltipWidth, tooltipHeight) {
 
+   *
+   * will compute the svg rotate   triangleTransform = `translate(5,5) rotate(45)`;
+*/
+  private computeTriangleTransform(placement) {
+    let rot = 0;
+    let xpos = this.svgSize.width / 2;
+    let ypos = this.svgSize.height / 2;
+    const dispY = this.svgSize.height / 2;
+    const dispX = this.svgSize.width / 2
+
+    // this.triangleTransform = `translate(${this.svgSize.width / 2},${this.svgSize.height / 2}) ` +
+
+    switch (placement) {
+      case 'top':
+        xpos = xpos - dispX / 2;
+        rot = 0;
+        break;
+      case 'bottom':
+        xpos = xpos + (this.svgSize.width - TRIANGLE_WIDTH) / 2
+        ypos = ypos + dispY / 2;
+        rot = 180;
+        break;
+      case 'left':
+        ypos = ypos + dispY / 2;
+        rot = -90;
+        break;
+      case 'right':
+        ypos = ypos - dispY / 2;
+        rot = 90;
+        break;
+
+    }
+    // xpos = 0;
+    // ypos = 0;
+
+    this.triangleTransform = `translate(${xpos},${ypos}) rotate(${rot}) `;
   }
 
+  //
   reportTriangleTransform() {
 
     return this.triangleTransform;
   }
 
   computeTriangleClass() {
-    const css = 'tooltip-item-triangle';
-    if (!this.doDisplay) {
-     // css = css + ' hidden' ;
+    let css = 'tooltip-item-triangle';
+    const custom = this.options['customClass'];
+
+    if (custom) {
+      css = css + ' ' + custom;
     }
 
     return css;
-
   }
 
 }

@@ -1,10 +1,10 @@
-<div [ngClass]="'tooltip-container'" [style.left]="this.getStyle('left')" [style.top]="this.getStyle('top')" > 
- <div [ngClass]="this.computeClass()"  [innerHTML]="this.displayText | keepHtml"></div>
-
- <svg [ngClass]="this.computeTriangleClass()" width="30" height="30" xmlns="http://www.w3.org/2000/svg" version="1.1">
+<div class="svg-container" [style.left]="this.getTriangleStyle('left')" [style.top]="this.getTriangleStyle('top')" >
+  <svg [ngClass]="this.computeTriangleClass()" [attr.width]="this.svgSize.width" [attr.height]="this.svgSize.height" xmlns="http://www.w3.org/2000/svg" version="1.1">
     <g [attr.transform]="this.reportTriangleTransform()">
-      <polygon points="0,0 20,0 10,20" />
+      <polygon  [attr.points]="this.polygonPoints"   />
     </g>
   </svg>
-
+</div>
+<div [ngClass]="'tooltip-container'" [style.left]="this.getStyle('left')" [style.top]="this.getStyle('top')">
+  <div [ngClass]="this.computeClass()" [innerHTML]="this.displayText | keepHtml"></div>
 </div>
