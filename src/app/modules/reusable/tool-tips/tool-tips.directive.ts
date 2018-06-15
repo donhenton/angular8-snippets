@@ -20,9 +20,6 @@ export interface ToolTipItem {
 })
 export class ToolTipsDirective implements AfterContentInit {
 
-
-
-
   _options = {};
   displayRef: any
   firstTime = false;
@@ -58,6 +55,12 @@ export class ToolTipsDirective implements AfterContentInit {
     }
   }
 
+  @Input('offset') set offset(value: string) {
+    if (value) {
+      this._options['offset'] = value;
+    }
+  }
+
   /* tslint:disable:no-input-rename */
   @Input('appToolTip') set toolTipValue(value: string) {
     this._toolTipValue = value;
@@ -79,26 +82,19 @@ export class ToolTipsDirective implements AfterContentInit {
 
 
     this.displayRef.instance.showToolTip();
-    // if (this.isDisplayOnHover === false) {
-    //  return;
-    // }
-    // console.log(`${this._options['toolTipValue']} ${this._options['placement']}`)
-    // this.show();
+
   }
 
   @HostListener('focusout')
   @HostListener('mouseleave')
   onMouseLeave() {
-    // if (this.options['trigger'] === 'hover') {
-    // this.destroyTooltip();
-    // }
-    // console.log('mouse leave');
+
     this.displayRef.instance.hideToolTip();
   }
 
   @HostListener('click', ['$event'])
   onClick(ev) {
-    // console.log(`click ${ev.target}`)
+
   }
 
 
@@ -115,14 +111,15 @@ export class ToolTipsDirective implements AfterContentInit {
     this.displayRef.instance.options = this._options;
     this.displayRef.instance.displayText = this._toolTipValue;
     this.displayRef.instance.directiveRef = this;
+    let offVar =  null;
+    try {
+      offVar =  parseInt(this._options['offset'], 10);
+    } catch (e) {}
+    if (offVar) {
+      this.displayRef.instance.offset = offVar;
+    }
+
     this.displayRef.instance.setPosition();
-
-    // console.log(this.displayRef.instance.elementRef.nativeElement.getBoundingClientRect());
-
-    // ngAfterContentChecked() {
-    //   console.log(this.elementRef.nativeElement.getBoundingClientRect());
-
-
 
 
 

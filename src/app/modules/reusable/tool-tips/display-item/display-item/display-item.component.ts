@@ -12,15 +12,13 @@ export class DisplayItemComponent implements OnInit {
   _options = {};
   _displayText = 'initial';
   _directiveRef: ToolTipsDirective;
-  tooltipOffset = 15;
+  _offset = 15;
   styleLeft = '';
   styleTop = '';
 
 
   doDisplay = false;
 
-  // @ViewChild('myIdentifier')
-  // myIdentifier: ElementRef;
 
   constructor(private elementRef: ElementRef, private _sanitizer: DomSanitizer) { }
 
@@ -41,6 +39,15 @@ export class DisplayItemComponent implements OnInit {
 
   }
 
+  set offset(v: number) {
+    if (v) {
+      this._offset = v;
+    }
+  }
+  get offset() {
+
+    return this._offset;
+  }
 
   setPosition(): void {
 
@@ -65,12 +72,12 @@ export class DisplayItemComponent implements OnInit {
 
 
     if (placement === 'top') {
-      tTop = (elementPosition.top + scrollY) - (tooltipHeight + this.tooltipOffset);
+      tTop = (elementPosition.top + scrollY) - (tooltipHeight + this.offset);
 
     }
 
     if (placement === 'bottom') {
-      tTop = (elementPosition.top + scrollY) + directiveHeight + this.tooltipOffset;
+      tTop = (elementPosition.top + scrollY) + directiveHeight + this.offset;
     }
 
     if (placement === 'top' || placement === 'bottom') {
@@ -78,11 +85,11 @@ export class DisplayItemComponent implements OnInit {
     }
 
     if (placement === 'left') {
-      tLeft = elementPosition.left - tooltipWidth - this.tooltipOffset;
+      tLeft = elementPosition.left - tooltipWidth - this.offset;
     }
 
     if (placement === 'right') {
-      tLeft = elementPosition.left + directiveWidth + this.tooltipOffset;
+      tLeft = elementPosition.left + directiveWidth + this.offset;
     }
 
     if (placement === 'left' || placement === 'right') {
