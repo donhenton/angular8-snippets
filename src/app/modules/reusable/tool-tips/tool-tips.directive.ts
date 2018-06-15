@@ -61,6 +61,19 @@ export class ToolTipsDirective implements AfterContentInit {
     }
   }
 
+  @Input() set useTriangle(v: boolean) {
+    console.log(`1 ${v}`)
+    if (v) {
+      this._options['useTriangle'] = v;
+    }
+  }
+
+  get useTriangle() {
+    return this._options['useTriangle'];
+  }
+
+
+
   /* tslint:disable:no-input-rename */
   @Input('appToolTip') set toolTipValue(value: string) {
     this._toolTipValue = value;

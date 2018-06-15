@@ -1,11 +1,12 @@
  
   .tooltip-item-triangle {
 
-    fill: tan
+    fill: tan;
+    stroke: $green-color;
   }
   .tooltip-item {
     padding: 5px;
-   // border: 4px double $green-color;
+    border: thin solid $green-color;
     background-color: tan;
     color: $blue-color;
     &.new-tooltip {
@@ -14,13 +15,15 @@
       text-align: center;
       background-color: red;
       color: yellow;
-      box-shadow: 7px 3px 3px 3px rgba(0, 0, 0, 0.6);
+      box-shadow: 5px 5px 5px   rgba(0, 0, 0, 0.6) ;
       width: 150px;
       border-radius: 15px;
     }
   }
   svg.new-tooltip {
     fill: red ;
+    stroke: yellow;
+  
   }
 
  

@@ -20,6 +20,7 @@ export class DisplayItemComponent implements OnInit {
   triangleLeftNumber = 0;
   triangleTopNumber = 0;
   polygonPoints = ''
+  _useTriangle = true;
 
   svgSize = { width: 2 * TRIANGLE_WIDTH, height: 2 * TRIANGLE_WIDTH }
   triangleTransform = '';
@@ -39,7 +40,8 @@ export class DisplayItemComponent implements OnInit {
   }
 
   getStyle(type) {
-    if (!this.doDisplay) {
+
+    if (!this.doDisplay  ) {
       return '-1550px'
 
     }
@@ -52,7 +54,8 @@ export class DisplayItemComponent implements OnInit {
   }
 
   getTriangleStyle(type) {
-    if (!this.doDisplay) {
+
+    if (!this.doDisplay || !this.useTriangle) {
       return '-1550px'
     }
 
@@ -64,6 +67,12 @@ export class DisplayItemComponent implements OnInit {
     return (this.styleLeftNumber + this.triangleLeftNumber) + 'px';
 
 
+  }
+
+
+
+  get useTriangle() {
+    return this._options['useTriangle'];
   }
 
   set offset(v: number) {
@@ -108,7 +117,7 @@ export class DisplayItemComponent implements OnInit {
     if (placement === 'bottom') {
       tTop = (elementPosition.top + scrollY) + directiveHeight + this.offset;
       //  this.triangleTopNumber = (- tooltipHeight + TRIANGLE_WIDTH / 2) - 8;
-      this.triangleTopNumber = - tooltipHeight + 2;
+      this.triangleTopNumber = - tooltipHeight + TRIANGLE_WIDTH / 4;
       this.triangleLeftNumber = tooltipWidth / 2 - TRIANGLE_WIDTH
     }
 
