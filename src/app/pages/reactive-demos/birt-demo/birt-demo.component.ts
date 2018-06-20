@@ -1,8 +1,14 @@
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { BirtService } from '../support/birtService';
 import { Office , CustomersForEmployees} from './../support/birt.interfaces';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute,
+  Router, Event, NavigationStart,
+  NavigationEnd, NavigationCancel, NavigationError } from '@angular/router';
 import { NgForm } from '@angular/forms';
+
+// wait indicator for resolve
+// https://stackoverflow.com/questions/42048142/angular-2-resolver-with-loading-indicator
+
 
 @Component({
   selector: 'app-birt-demo',
@@ -18,11 +24,16 @@ export class BirtDemoComponent implements OnInit {
   selectedOffice: Office;
   selectedOfficeCode = null;
   officeList: Office[] = [];
-  isDataLoaded = true;
+  loading = true;
   employeeSelector = [];
   selectedEmployees: CustomersForEmployees[] = [];
 
-  constructor(private birtService: BirtService, private route: ActivatedRoute) { }
+  constructor(private birtService: BirtService, private route: ActivatedRoute, private router: Router) {
+
+    router.events.subscribe((routerEvent: Event) => {
+      this.checkRouterEvent(routerEvent);
+    });
+  }
 
 
   ngOnInit() {
@@ -40,6 +51,16 @@ export class BirtDemoComponent implements OnInit {
 
   }
 
+  checkRouterEvent(routerEvent: Event) {
+
+    if (routerEvent instanceof NavigationEnd ||
+      routerEvent instanceof NavigationCancel ||
+      routerEvent instanceof NavigationError) {
+
+      this.loading = false;
+    }
+  }
+
   generateEmployeeSelector() {
     this.employeeSelector = this.selectedOffice.employees.map(e => {
       return { selected: false, firstName: e.firstName, lastName: e.lastName, employeeNumber: e.employeeNumber }
@@ -48,7 +69,7 @@ export class BirtDemoComponent implements OnInit {
   }
 
   onEmployee(id, event) {
-    // console.log(`${id} ${JSON.stringify(this.employeeSelector)}`)
+
   }
 
   checkEmployeeSubmitButton() {

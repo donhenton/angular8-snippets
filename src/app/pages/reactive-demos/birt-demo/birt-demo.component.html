@@ -1,69 +1,73 @@
-<div *ngIf="this.isDataLoaded">
-    <h3>Offices</h3>
-    <div class="row">
-        <div class="column30Left form">
+<div id="loader" class="myloader" *ngIf="this.loading">
+  Loading...
+</div>
 
-            <select (change)="this.changeOffice($event)" id="officeSelect">
-                <option *ngFor="let office of officeList" [value]="office.officeCode">{{office.addressLine1}}</option>
-            </select>
+<div *ngIf="!this.loading">
+  <h3>Offices</h3>
+  <div class="row">
+    <div class="column30Left form">
 
-        </div>
-        <div class="column70Right">
+      <select (change)="this.changeOffice($event)" id="officeSelect">
+        <option *ngFor="let office of officeList" [value]="office.officeCode">{{office.addressLine1}}</option>
+      </select>
 
-            <h4>{{this.selectedOffice.addressLine1}} {{this.selectedOffice.addressLine2}}</h4>
-
-            <blockquote>
-                <table class="table table-striped">
-                    <tbody>
-                        <tr>
-                            <th>Phone:</th>
-                            <td>{{this.selectedOffice.phone}}</td>
-                        </tr>
-                        <tr>
-                            <th>Country:</th>
-                            <td>{{this.selectedOffice.country}}</td>
-                        </tr>
-                        <tr>
-                            <th>Territory:</th>
-                            <td>{{this.selectedOffice.territory}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </blockquote>
-        </div>
     </div>
+    <div class="column70Right">
 
+      <h4>{{this.selectedOffice.addressLine1}} {{this.selectedOffice.addressLine2}}</h4>
 
-
-    <div class="row employee-display">
-        <form (ngSubmit)="onEmpSubmit()" class="form" #employeeForm="ngForm">
-            <table class="table table-striped">
-                <caption>Employees</caption>
-                <thead>
-                    <tr>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Select</th>
-                    </tr>
-                </thead>
-                <tr *ngFor="let emp of this.employeeSelector">
-                    <td>{{emp.firstName}}</td>
-                    <td>{{emp.lastName}}</td>
-                    <td>
-                        <input type="checkbox" (change)="this.onEmployee(emp.employeeNumber,$event)" [ngModelOptions]="{standalone: true}" [(ngModel)]="emp.selected"
-                        />
-                    </td>
-
-                </tr>
-                <tbody>
-
-                </tbody>
-            </table>
-            <div class="row">
-                <button  [disabled]="this.checkEmployeeSubmitButton()"    class="btn btn-primary" type="submit">Submit Employees</button>
-            </div>
-        </form>
+      <blockquote>
+        <table class="table table-striped">
+          <tbody>
+            <tr>
+              <th>Phone:</th>
+              <td>{{this.selectedOffice.phone}}</td>
+            </tr>
+            <tr>
+              <th>Country:</th>
+              <td>{{this.selectedOffice.country}}</td>
+            </tr>
+            <tr>
+              <th>Territory:</th>
+              <td>{{this.selectedOffice.territory}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </blockquote>
     </div>
+  </div>
+
+
+
+  <div class="row employee-display">
+    <form (ngSubmit)="onEmpSubmit()" class="form" #employeeForm="ngForm">
+      <table class="table table-striped">
+        <caption>Employees</caption>
+        <thead>
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Select</th>
+          </tr>
+        </thead>
+        <tr *ngFor="let emp of this.employeeSelector">
+          <td>{{emp.firstName}}</td>
+          <td>{{emp.lastName}}</td>
+          <td>
+            <input type="checkbox" (change)="this.onEmployee(emp.employeeNumber,$event)" [ngModelOptions]="{standalone: true}" [(ngModel)]="emp.selected"
+            />
+          </td>
+
+        </tr>
+        <tbody>
+
+        </tbody>
+      </table>
+      <div class="row">
+        <button [disabled]="this.checkEmployeeSubmitButton()" class="btn btn-primary" type="submit">Submit Employees</button>
+      </div>
+    </form>
+  </div>
 
 
 </div>
@@ -72,31 +76,31 @@
 <div>
 
 
-    <div *ngFor="let emp of this.selectedEmployees" class="row">
-        <hr> {{this.getEmployeeDisplay(emp.id)}}
-        <em *ngIf="emp.customers.length === 0">(No Customers Found)</em>
-        <blockquote *ngIf="emp.customers.length > 0">
-            <table class="table table-striped">
-                <caption>Customers</caption>
-                <thead>
-                    <tr>
-                        <th>Customer Name</th>
-                        <th>City</th>
-                        <th>Country</th>
-                    </tr>
-                </thead>
-                <tr *ngFor="let cust of emp.customers">
-                    <td>{{cust.customerName}}</td>
-                    <td>{{cust.city}}</td>
-                    <td>{{cust.country}}</td>
+  <div *ngFor="let emp of this.selectedEmployees" class="row">
+    <hr> {{this.getEmployeeDisplay(emp.id)}}
+    <em *ngIf="emp.customers.length === 0">(No Customers Found)</em>
+    <blockquote *ngIf="emp.customers.length > 0">
+      <table class="table table-striped">
+        <caption>Customers</caption>
+        <thead>
+          <tr>
+            <th>Customer Name</th>
+            <th>City</th>
+            <th>Country</th>
+          </tr>
+        </thead>
+        <tr *ngFor="let cust of emp.customers">
+          <td>{{cust.customerName}}</td>
+          <td>{{cust.city}}</td>
+          <td>{{cust.country}}</td>
 
-                </tr>
-                <tbody>
+        </tr>
+        <tbody>
 
-                </tbody>
-            </table>
-        </blockquote>
+        </tbody>
+      </table>
+    </blockquote>
 
-    </div>
+  </div>
 
 </div>
