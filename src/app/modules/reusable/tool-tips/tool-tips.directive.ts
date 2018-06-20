@@ -6,15 +6,6 @@ import {
 import { DisplayItemComponent } from './display-item/display-item/display-item.component';
 
 
-export interface ToolTipItem {
-  data: any;
-  show: boolean;
-  close: boolean;
-  events: any;
-}
-
-
-
 @Directive({
   selector: '[appToolTip]'
 })
@@ -62,7 +53,7 @@ export class ToolTipsDirective implements AfterContentInit {
   }
 
   @Input() set useTriangle(v: boolean) {
-    console.log(`1 ${v}`)
+
     if (v) {
       this._options['useTriangle'] = v;
     }
