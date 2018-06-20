@@ -1,0 +1,52 @@
+
+
+
+<h3>Enter a Group Name</h3>
+
+
+ <div class="row">
+   <em><b>This calls out to the service at each keystroke, but debounce is used in the validator function</b></em>
+ </div>
+ <div class="row">
+    <a target="_blank" href=" https://www.concretepage.com/angular-2/angular-custom-async-validator-example">
+    https://www.concretepage.com/angular-2/angular-custom-async-validator-example
+  </a>
+ </div>
+
+
+<div class="row">
+    <div class="column50Left">
+  <form class="form well" [formGroup]="validateForm" (ngSubmit)="onFormSubmit()">
+
+      <p class="row">Team Name :
+          <input type="text" size="30"  appValidateGroup formControlName="groupName">
+          <br/>
+          <div *ngIf="validateForm.get('groupName').invalid && validateForm.get('groupName').dirty" class="error"> 
+            
+              <div *ngIf="validateForm.get('groupName').getError('required') === true"> 
+                  Group Name Is Required
+              </div>
+              <div *ngIf="validateForm.get('groupName').getError('validateGroup') === true"> 
+                 Group Name Does Not Exist
+              </div>
+          
+          </div>
+        
+        <p class="row"> 
+            <button class="btn btn-primary" [disabled]="validateForm.invalid">SUBMIT</button>          </p>
+
+    </form>
+
+  </div> 
+
+
+
+<div class="column50Right">
+    <div class="row"> 
+      Enter a group name that will be validated against a REST service
+
+      </div>
+   
+  </div>  
+
+</div>

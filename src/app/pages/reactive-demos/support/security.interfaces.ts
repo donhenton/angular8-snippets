@@ -15,4 +15,9 @@ export class UserWithApps {
     mappedId: number
 }
 
+export class Group {
+    id: number ;
+    groupName: string;
+}
+
 

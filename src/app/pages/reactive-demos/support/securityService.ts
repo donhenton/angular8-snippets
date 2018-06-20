@@ -13,7 +13,7 @@ import 'rxjs/add/operator/map';
 
 
 import { Observable } from 'rxjs/Rx'; // NOT from 'rxjs/Rx/Observable
-import { User, UserWithApps, Applications } from './security.interfaces';
+import { User, Group, UserWithApps, Applications } from './security.interfaces';
 
 @Injectable()
 export class SecurityService {
@@ -21,6 +21,13 @@ export class SecurityService {
     private readonly URL_BASE = environment.securityAPIURL; // users/all
 
     constructor(private _http: Http) { }
+
+
+    getAllGroups(): Observable<Group[]> {
+        return this._http.get(this.URL_BASE + 'groups/all')
+            .map(res => res.json())
+    }
+
 
 
     getAllUsers(): Observable<User[]> {

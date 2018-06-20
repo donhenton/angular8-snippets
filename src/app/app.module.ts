@@ -33,6 +33,8 @@ import { BirtService } from './pages/reactive-demos/support/birtService';
 import { TabDemoComponent } from './pages/tab-demo/tab-demo.component';
 import { ResusableModule } from './modules/reusable/resusable.module';
 import { ToolTipPageComponent } from './pages/tool-tip/tool-tip-page.component';
+import { AsyncValidatorComponent } from './pages/async-validator/async-validator.component';
+
 
 
 // https://juristr.com/blog/2017/07/ng2-dynamic-tab-component/
@@ -53,6 +55,8 @@ const appRoutes: Routes = [
   { path: 'udemy/viewChild', component: ViewChildComponent },
   { path: 'udemy/templateForm', component: TemplateFormComponent },
   { path: 'udemy/reactiveForm', component: ReactiveFormComponent },
+  { path: 'simpleReactive', component: SimpleReactiveComponent },
+  { path: 'asyncValidator', component: AsyncValidatorComponent },
   { path: 'custom/directives', component: CustomDirectivePageComponent },
   { path: 'custom/tool-tips', component: ToolTipPageComponent },
   { path: 'routing/linkActive', component: LinkActivePageComponent },
@@ -97,7 +101,8 @@ const appRoutes: Routes = [
     SimpleReactiveComponent,
     TabDemoComponent,
     BirtDemoComponent,
-    ToolTipPageComponent
+    ToolTipPageComponent,
+    AsyncValidatorComponent
   ],
   imports: [
     FormsModule,
