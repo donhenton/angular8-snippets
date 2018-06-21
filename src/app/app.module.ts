@@ -22,7 +22,7 @@ import { CustomDirectivePageComponent } from './pages/custom-directives/custom-d
 import { LoopCopyDirective } from './pages/custom-directives/loop-copy.directive';
 import { DebuggingPageComponent } from './pages/debugging/debugging.component';
 import { ViewChildComponent } from './pages/udemy/view-child/view-child.component';
-import {  ServerElementComponent } from './pages/udemy/view-child/server-element.component';
+import { ServerElementComponent } from './pages/udemy/view-child/server-element.component';
 import { CockpitComponent } from './pages/udemy/view-child/cockpit.component';
 import { TemplateFormComponent } from './pages/udemy/template-form/template-form.component';
 import { ReactiveFormComponent } from './pages/udemy/reactive-form/reactive-form.component';
@@ -51,7 +51,11 @@ const appRoutes: Routes = [
   { path: 'directives', component: StandardDirectiveComponent },
   { path: 'debugging', component: DebuggingPageComponent },
   { path: 'simpleReactive', component: SimpleReactiveComponent },
-  { path: 'birtDemo', component: BirtDemoComponent , resolve: {officeList: BirtService }}, // pre-fetch data via resolve
+  // pre-fetch data via resolve
+  {
+    path: 'birtDemo', component: BirtDemoComponent, resolve: { officeList: BirtService }
+    , data: { birtTitle: 'this is passed in via the route in app.module' }
+  },
   { path: 'udemy/viewChild', component: ViewChildComponent },
   { path: 'udemy/templateForm', component: TemplateFormComponent },
   { path: 'udemy/reactiveForm', component: ReactiveFormComponent },

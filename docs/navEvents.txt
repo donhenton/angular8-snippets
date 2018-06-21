@@ -1,0 +1,8 @@
+in app NavigationStart(id: 2, url: '/birtDemo')
+app.component.ts:24 in app RoutesRecognized(id: 2, url: '/birtDemo', urlAfterRedirects: '/birtDemo', state: Route(url:'', path:'') { Route(url:'birtDemo', path:'birtDemo') } )
+app.component.ts:24 in app GuardsCheckStart(id: 2, url: '/birtDemo', urlAfterRedirects: '/birtDemo', state: Route(url:'', path:'') { Route(url:'birtDemo', path:'birtDemo') } )
+app.component.ts:24 in app GuardsCheckEnd(id: 2, url: '/birtDemo', urlAfterRedirects: '/birtDemo', state: Route(url:'', path:'') { Route(url:'birtDemo', path:'birtDemo') } , shouldActivate: true)
+app.component.ts:24 in app ResolveStart(id: 2, url: '/birtDemo', urlAfterRedirects: '/birtDemo', state: Route(url:'', path:'') { Route(url:'birtDemo', path:'birtDemo') } )
+app.component.ts:24 in app ResolveEnd(id: 2, url: '/birtDemo', urlAfterRedirects: '/birtDemo', state: Route(url:'', path:'') { Route(url:'birtDemo', path:'birtDemo') } )
+app.component.ts:24 in app NavigationEnd(id: 2, url: '/birtDemo', urlAfterRedirects: '/birtDemo')
+birt-demo.component.ts:59 in birt demo NavigationEnd(id: 2, url: '/birtDemo', urlAfterRedirects: '/birtDemo')

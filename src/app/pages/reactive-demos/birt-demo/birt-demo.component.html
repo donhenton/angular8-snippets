@@ -1,6 +1,4 @@
-<div id="loader" class="myloader" *ngIf="this.loading">
-  Loading...
-</div>
+
 
 <div *ngIf="!this.loading">
   <h3>Offices</h3>
@@ -10,7 +8,10 @@
       <select (change)="this.changeOffice($event)" id="officeSelect">
         <option *ngFor="let office of officeList" [value]="office.officeCode">{{office.addressLine1}}</option>
       </select>
-
+      <div class="route-demo">
+        {{this.birtTitle}}
+      </div>
+      
     </div>
     <div class="column70Right">
 

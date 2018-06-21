@@ -1,4 +1,5 @@
 
+<div id="loader"  *ngIf="this.loading" class="waitIndicator"></div>
 <section id="pageContainer">
   <header>
     <figure class="logo">Snippets</figure>
@@ -22,7 +23,7 @@
             <aside dropdown>Reactive Demos</aside>
             <ul>
                 <li><a routerLink="/simpleReactive">Simple Reactive</a></li>
-                <li><a routerLink="/birtDemo">BIRT Demo</a></li>
+                <li><a routerLink="/birtDemo" [queryParams]="{useWait: true}">BIRT Demo</a></li>
   
             </ul>
   
