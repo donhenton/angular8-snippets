@@ -1,5 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
+import { BrowserModule } from '@angular/platform-browser';
 import { AsyncValidatorComponent } from './async-validator.component';
 
 describe('AsyncValidatorComponent', () => {
@@ -8,6 +10,12 @@ describe('AsyncValidatorComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        FormsModule,
+        HttpModule,
+        ReactiveFormsModule,
+        BrowserModule,
+      ],
       declarations: [ AsyncValidatorComponent ]
     })
     .compileComponents();
