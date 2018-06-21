@@ -9,7 +9,8 @@ import {
 
 
 /**
- * Main application page to indicate a wait window is required, define the menu link
+ * Main application page.
+ * To indicate a wait window is required, define the menu link
  * as below
  *
  *
