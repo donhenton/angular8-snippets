@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormArray, Validators, FormBuilder } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
-
+import {DataService} from '../../../services/data.service'
 import { TeamManagementService } from './../support/team-management.service';
 import { Team, Employee, Department } from './../support/team';
 
@@ -18,6 +18,7 @@ export class ReactiveFormComponent implements OnInit {
   formSubmitted = false;
   allSkills: Observable<any[]>
   constructor(
+    private dataService: DataService,
     private formBuilder: FormBuilder,
     private teamMngService: TeamManagementService) {
   }
@@ -68,7 +69,9 @@ export class ReactiveFormComponent implements OnInit {
     const team: Team = this.teamForm.value;
     this.teamMngService.saveTeam(team);
     this.formSubmitted = true;
+    this.dataService.emitTeam(team);
     this.teamForm.reset();
+
   }
   resetTeamForm() {
     this.teamForm.reset({

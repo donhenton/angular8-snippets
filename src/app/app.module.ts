@@ -30,10 +30,12 @@ import { SimpleReactiveComponent } from './pages/reactive-demos/simple-reactive/
 import { HttpModule } from '@angular/http';
 import { BirtDemoComponent } from './pages/reactive-demos/birt-demo/birt-demo.component';
 import { BirtService } from './pages/reactive-demos/support/birtService';
+import { DataService } from './services/data.service';
 import { TabDemoComponent } from './pages/tab-demo/tab-demo.component';
 import { ResusableModule } from './modules/reusable/resusable.module';
 import { ToolTipPageComponent } from './pages/tool-tip/tool-tip-page.component';
 import { AsyncValidatorComponent } from './pages/async-validator/async-validator.component';
+import { ReplayPageComponent } from './pages/reactive-demos/replay-page/replay-page.component';
 
 
 
@@ -51,6 +53,7 @@ const appRoutes: Routes = [
   { path: 'directives', component: StandardDirectiveComponent },
   { path: 'debugging', component: DebuggingPageComponent },
   { path: 'simpleReactive', component: SimpleReactiveComponent },
+  { path: 'replayDemo', component: ReplayPageComponent },
   // pre-fetch data via resolve
   {
     path: 'birtDemo', component: BirtDemoComponent, resolve: { officeList: BirtService }
@@ -106,7 +109,8 @@ const appRoutes: Routes = [
     TabDemoComponent,
     BirtDemoComponent,
     ToolTipPageComponent,
-    AsyncValidatorComponent
+    AsyncValidatorComponent,
+    ReplayPageComponent
   ],
   imports: [
     FormsModule,
@@ -116,7 +120,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     ResusableModule
   ],
-  providers: [BirtService],
+  providers: [BirtService, DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

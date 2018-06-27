@@ -1,0 +1,36 @@
+<div class="column50Left">
+
+  <div class="row">
+    <h4>Current Team</h4>
+    <div>{{team?.teamName}}</div>
+    <!-- elvis operator (?) here if team is null, then skip with no error -->
+  </div>
+  <div class="row">
+    <h4>Prior Entries</h4>
+    <ul>
+      <li class="basic-list" *ngFor="let item of this.teamList;  let k = index;">{{k}} {{item.teamName}}</li>
+
+
+    </ul>
+
+
+
+  </div>
+
+</div>
+<div class="column50Right">
+  <div class="row">Under Menu Options --> Forms --> Reactive Forms</div>
+
+  <div class="row">
+    Fill out that form  and press the submit button a number of times. 
+    This page will then display the last entry and the one prior. 
+    See DataService for the use of ReplaySubject
+
+  </div>
+
+  <div class="row">
+    This illustrates using ReplaySubject as a way of storing the previous
+    entries.
+  </div>
+
+</div>
