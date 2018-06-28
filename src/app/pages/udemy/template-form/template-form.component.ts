@@ -4,7 +4,8 @@ import { NgForm } from '@angular/forms';
 @Component({
   selector: 'app-template-form',
   templateUrl: './template-form.component.html',
-  styleUrls: ['./template-form.component.scss']
+  styleUrls: ['./template-form.component.scss'],
+
 })
 export class TemplateFormComponent implements OnInit {
 
@@ -30,6 +31,25 @@ export class TemplateFormComponent implements OnInit {
 
   ngOnInit() {
     this.user = JSON.parse(JSON.stringify(this.userSample));
+    this.signupForm.valueChanges.subscribe(this.handleFormChanges.bind(this))
+  }
+
+  handleFormChanges(data) {
+    // console.log(data)
+  }
+
+  checkForBozos() {
+    if (this.signupForm && this.signupForm.controls
+      && this.signupForm.controls['userData']
+      && this.signupForm.controls['userData']['controls'].username.errors
+      && this.signupForm.controls['userData']['controls'].username.errors) {
+
+       return  this.signupForm.controls['userData']['controls'].username.errors['noBozos'] ;
+
+
+    }
+
+    return false;
   }
 
   onSubmit() {
@@ -40,7 +60,7 @@ export class TemplateFormComponent implements OnInit {
     this.user.answer = this.signupForm.value.questionAnswer;
     this.user.gender = this.signupForm.value.gender;
     this.signupForm.reset();
-    this.signupForm.form.patchValue({secret: this.defaultQuestion});
+    this.signupForm.form.patchValue({ secret: this.defaultQuestion });
   }
 
   suggestUserName() {

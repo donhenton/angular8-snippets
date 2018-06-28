@@ -36,6 +36,7 @@ import { ResusableModule } from './modules/reusable/resusable.module';
 import { ToolTipPageComponent } from './pages/tool-tip/tool-tip-page.component';
 import { AsyncValidatorComponent } from './pages/async-validator/async-validator.component';
 import { ReplayPageComponent } from './pages/reactive-demos/replay-page/replay-page.component';
+import { NoBozosDirective } from './pages/udemy/template-form/no-bozos.directive';
 
 
 
@@ -86,6 +87,7 @@ const appRoutes: Routes = [
     EventBindingButtonComponent,
     HomeComponent,
     DropdownDirective,
+    NoBozosDirective,
     MenuDirective,
     QueryRoutePageComponent,
     SubRoutePageComponent,
