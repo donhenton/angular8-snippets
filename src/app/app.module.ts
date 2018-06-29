@@ -10,10 +10,11 @@ import { MenuDirective } from './components/dropdown/menu.directive';
 import { QueryRoutePageComponent } from './pages/routing/query-route-page/query-route-page.component';
 import { SubRoutePageComponent } from './pages/routing/sub-route-page/sub-route-page.component';
 import { LinkActivePageComponent } from './pages/routing/link-active-page/link-active-page.component';
-import { MainChildComponent } from './pages/child-components/main-child/main-child.component';
-import { AlphaChildComponent } from './pages/child-components/alpha-child/alpha-child.component';
-import { BetaChildComponent } from './pages/child-components/beta-child/beta-child.component';
-import { ChildPageComponent } from './pages/child-components/child-page/child-page.component';
+import { ChildRoutesModule} from './pages/child-components/child-routes.module';
+// import { MainChildComponent } from './pages/child-components/main-child/main-child.component';
+// import { AlphaChildComponent } from './pages/child-components/alpha-child/alpha-child.component';
+// import { BetaChildComponent } from './pages/child-components/beta-child/beta-child.component';
+// import { ChildPageComponent } from './pages/child-components/child-page/child-page.component';
 import { PipePageComponent } from './pages/pipes/pipe-page/pipe-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IncludePageComponent } from './pages/include-demo/include-page/include-page.component';
@@ -70,13 +71,7 @@ const appRoutes: Routes = [
   { path: 'routing/linkActive', component: LinkActivePageComponent },
   { path: 'routing/linkActive/queryRoute', component: QueryRoutePageComponent },
   { path: 'routing/linkActive/queryRoute/:alpha/:beta', component: QueryRoutePageComponent },
-  {
-    path: 'childComponents', component: ChildPageComponent, children: [
-      { path: 'main', component: MainChildComponent },
-      { path: 'alpha', component: AlphaChildComponent },
-      { path: 'beta', component: BetaChildComponent }
-    ]
-  },
+
   { path: '', component: HomeComponent }
 ]
 
@@ -92,10 +87,10 @@ const appRoutes: Routes = [
     QueryRoutePageComponent,
     SubRoutePageComponent,
     LinkActivePageComponent,
-    MainChildComponent,
-    AlphaChildComponent,
-    BetaChildComponent,
-    ChildPageComponent,
+    // MainChildComponent,
+    // AlphaChildComponent,
+    // BetaChildComponent,
+    // ChildPageComponent,
     PipePageComponent,
     IncludePageComponent,
     IncludeConsumerComponent,
@@ -120,6 +115,7 @@ const appRoutes: Routes = [
     HttpModule,
     BrowserModule,
     RouterModule.forRoot(appRoutes),
+    ChildRoutesModule,
     ResusableModule
   ],
   providers: [BirtService, DataService],
