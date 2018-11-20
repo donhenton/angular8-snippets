@@ -1,0 +1,18 @@
+.general-container {
+    margin: 0 auto;
+    // width: 63%;
+    height: 100px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+    flex-direction: column;
+    height: 200px;
+   
+  }
+
+
+  .demo-three-text {
+      font-size: 40px;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }

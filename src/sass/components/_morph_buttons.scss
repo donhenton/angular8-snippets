@@ -1,0 +1,268 @@
+.morph-button {
+
+  $buttonWidth: 150px;
+  $buttonHeight: 60px;
+  $duration: 1.33s;
+  $greenColor: rgb(69, 99, 25);
+  $blueColor: #346bc9;
+  $morphContainerWidth: $buttonWidth+200;
+  $rotateScale: 1.25;
+
+  &.morph-container {
+    position: relative;
+    width: $morphContainerWidth;
+    height: $buttonHeight;
+
+
+    .complete-marker {
+      z-index: 10;
+      font-size: 40px;
+      color: black;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      opacity: 0;
+      pointer-events: none;
+
+
+      &.show-checkmark {
+        animation-name: show-checkmark;
+        animation-duration: ($duration/4);
+        animation-iteration-count: 1;
+        animation-timing-function: ease-out;
+        animation-fill-mode: both;
+      }
+
+
+
+    }
+
+    .morphing-indicator-button {
+      position: absolute;
+      z-index: 5;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: $blueColor;
+      -webkit-touch-callout: none;
+      /* iOS Safari */
+      -webkit-user-select: none;
+      /* Safari */
+      -khtml-user-select: none;
+      /* Konqueror HTML */
+      -moz-user-select: none;
+      /* Firefox */
+      -ms-user-select: none;
+      /* Internet Explorer/Edge */
+      user-select: none;
+      /* Non-prefixed version, currently
+                                    supported by Chrome and Opera */
+      border: 1px solid #566963;
+      display: inline-block;
+      cursor: pointer;
+      color: #ffffff;
+      font-family: Arial;
+      overflow: hidden;
+      font-size: 15px;
+      font-weight: bold;
+      padding: 11px 23px;
+      width: $buttonWidth;
+      height: $buttonHeight;
+      text-decoration: none;
+      text-align: center;
+
+      &.inc-border {
+        border: 6px solid $blueColor;
+        border-left: 6px solid lightblue;
+
+        &.rotate-spinner {
+          animation-name: rotate-spinner-button;
+          animation-duration: 1s;
+          animation-iteration-count: infinite;
+          animation-timing-function: linear;
+
+          &.finalize {
+            animation-name: finalize;
+            animation-duration: $duration/4;
+            animation-iteration-count: 1;
+            animation-timing-function: ease-out;
+            animation-fill-mode: both;
+          }
+
+        }
+
+      }
+
+
+
+      .button-text {
+        font-size: 30px;
+        text-align: center;
+        opacity: 1;
+      }
+
+
+      &.blue-button-to-circle {
+
+        cursor: default;
+
+        animation-name: to-blue-circle;
+        animation-duration: $duration/4;
+        animation-iteration-count: 1;
+        animation-timing-function: ease-out;
+        animation-fill-mode: both;
+
+        // animation-delay: 2s; /* or: Xms */
+      }
+
+    }
+
+
+
+
+
+    .fade-text {
+
+
+      animation: fade-text;
+      animation-timing-function: linear;
+      animation-fill-mode: both;
+      animation-duration: $duration/6;
+
+    }
+
+
+    @keyframes finalize {
+      0% {
+
+        border: 6px solid $blueColor;
+        width: $buttonWidth/2.5;
+        border-radius: $buttonWidth/2;
+        background-color: white;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+      }
+
+      100% {
+
+        border: 6px solid $greenColor;
+        width: $buttonWidth/2.5;
+        border-radius: $buttonWidth/2;
+        background-color: $greenColor;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+      }
+
+
+    }
+
+
+    @keyframes show-checkmark {
+      0% {
+        opacity: 0;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(1.2);
+      }
+
+      25% {
+        opacity: .5;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.9);
+      }
+
+      75% {
+        opacity: 1;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.7);
+      }
+
+      100% {
+        opacity: 1;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(1);
+      }
+
+    }
+
+    @keyframes rotate-spinner-button {
+      from {
+
+        border: 6px solid $blueColor;
+        border-left: 6px solid lightblue;
+        width: $buttonWidth/2.5;
+        border-radius: $buttonWidth/2;
+        background-color: white;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(0deg);
+      }
+
+      to {
+
+        border: 6px solid $blueColor;
+        border-left: 6px solid lightblue;
+        width: $buttonWidth/2.5;
+        border-radius: $buttonWidth/2;
+        background-color: white;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(360deg);
+      }
+    }
+
+    // @keyframes indicator-to-green {
+    //   100% {
+    //   border: 6px solid $blueColor;
+    //   border-left: 6px solid lightblue;
+    //   width: $buttonWidth/2.5;
+    //   border-radius: $buttonWidth/2;
+    //   background-color: green;
+    //   top: 50%;
+    //   left: 50%;
+    //   }
+    // }
+
+    @keyframes to-blue-circle {
+
+
+
+      100% {
+        border: 6px solid $blueColor;
+        border-left: 6px solid lightblue;
+        width: $buttonWidth/2.5;
+        border-radius: $buttonWidth/2;
+        background-color: white;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(1.0);
+      }
+
+
+
+
+
+
+    }
+
+    @keyframes fade-text {
+
+      100% {
+
+        color: $blueColor;
+        opacity: 0;
+      }
+
+    }
+
+  }
+}
