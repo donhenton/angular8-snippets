@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -38,7 +39,8 @@ import { ToolTipPageComponent } from './pages/tool-tip/tool-tip-page.component';
 import { AsyncValidatorComponent } from './pages/async-validator/async-validator.component';
 import { ReplayPageComponent } from './pages/reactive-demos/replay-page/replay-page.component';
 import { NoBozosDirective } from './pages/udemy/template-form/no-bozos.directive';
-import { MorphButtonsPageComponent } from './pages/morph-buttons-page/morph-buttons-page.component';
+import { MorphButtonsPageComponent, AnimboxComponent } from './pages/morph-buttons-page/morph-buttons-page.component';
+import { MorphButtonComponent  } from './components/morph-button/morph-button.component';
 
 
 
@@ -89,6 +91,7 @@ const appRoutes: Routes = [
     QueryRoutePageComponent,
     SubRoutePageComponent,
     LinkActivePageComponent,
+    AnimboxComponent,
     // MainChildComponent,
     // AlphaChildComponent,
     // BetaChildComponent,
@@ -110,11 +113,13 @@ const appRoutes: Routes = [
     ToolTipPageComponent,
     AsyncValidatorComponent,
     ReplayPageComponent,
-    MorphButtonsPageComponent
+    MorphButtonsPageComponent,
+    MorphButtonComponent
   ],
   imports: [
     FormsModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
     HttpModule,
     BrowserModule,
     RouterModule.forRoot(appRoutes),

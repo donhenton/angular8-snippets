@@ -7,20 +7,13 @@
 
     <div class="general-container">
         
-      <div class="morph-button morph-container">
+      <!--
+ <app-morph-button #morphButton [buttonText]="'Submit1'" (submitCallback)="handleSubmit($event)"></app-morph-button>
+      -->
+     
 
-            <div data-action-id="55" id="morph3" class='morphing-indicator-button'>
-                <span class='button-text'>Submit</span>
-                <span class="complete-marker fa fa-check-circle"></span>
-
-            </div>
-
-
-      </div>
-
-
-
-      <div class="demo-three-text">Thank You!</div>
+<app-animbox [currentState]="this.animateChoices.choice"></app-animbox>
+     
     </div>
 
   </div>
@@ -28,7 +21,16 @@
 
   <div class="column50Right">
 
-    Right side
+     <table class="table table-striped">
+      <tr><td><input type="radio" name="type" (click)="chooseAnimation('basic')" [(ngModel)]="animateChoices.choice"    [value]="'basic'" required></td> <td>Basic</td></tr>
+      <tr><td><input type="radio" name="type" (click)="chooseAnimation('original')" [(ngModel)]="animateChoices.choice"    [value]="'original'" required></td> <td>Original</td></tr>
+      <tr><td><input type="radio" name="type" (click)="chooseAnimation('easing')" [(ngModel)]="animateChoices.choice"    [value]="'easing'" required></td> <td>Easing</td></tr>
+      <tr><td><input type="radio" name="type" (click)="chooseAnimation('delay')"[(ngModel)]="animateChoices.choice"    [value]="'delay'" required></td> <td>Delay</td></tr>
+     </table>
+    
+
+
+
   </div>
 
 
