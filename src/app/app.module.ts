@@ -38,7 +38,7 @@ import { ToolTipPageComponent } from './pages/tool-tip/tool-tip-page.component';
 import { AsyncValidatorComponent } from './pages/async-validator/async-validator.component';
 import { ReplayPageComponent } from './pages/reactive-demos/replay-page/replay-page.component';
 import { NoBozosDirective } from './pages/udemy/template-form/no-bozos.directive';
-import { MorphButtonsComponent } from './pages/morph-buttons/morph-buttons.component';
+import { MorphButtonsPageComponent } from './pages/morph-buttons-page/morph-buttons-page.component';
 
 
 
@@ -52,7 +52,7 @@ import { MorphButtonsComponent } from './pages/morph-buttons/morph-buttons.compo
 const appRoutes: Routes = [
   { path: 'pipes', component: PipePageComponent },
   { path: 'tabDemo', component: TabDemoComponent },
-  { path: 'morphButton', component: MorphButtonsComponent  },
+  { path: 'morphButton', component: MorphButtonsPageComponent  },
   { path: 'includes', component: IncludePageComponent },
   { path: 'directives', component: StandardDirectiveComponent },
   { path: 'debugging', component: DebuggingPageComponent },
@@ -110,7 +110,7 @@ const appRoutes: Routes = [
     ToolTipPageComponent,
     AsyncValidatorComponent,
     ReplayPageComponent,
-    MorphButtonsComponent
+    MorphButtonsPageComponent
   ],
   imports: [
     FormsModule,
