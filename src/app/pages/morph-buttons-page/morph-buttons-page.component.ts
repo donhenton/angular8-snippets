@@ -36,7 +36,7 @@ export class MorphButtonsPageComponent implements OnInit {
 
 @Component({
   selector: 'app-animbox',
-  template: `<div   class="mybox"></div>`,
+  template: ``,
   // template: `<div [@changeState]="currentState" class="mybox"></div>`,
   styleUrls: ['./morph-buttons-page.component.scss'],
   animations: [
@@ -44,26 +44,34 @@ export class MorphButtonsPageComponent implements OnInit {
 
       state('basic', style(
         {
-          backgroundColor: '#440000',
+          backgroundColor: 'red',
+          width: '100px',
+          height: '120px',
           transform: 'scale(.4)'
         }
       )),
       state('original', style(
         {
-          backgroundColor: '#47748f',
+          backgroundColor: 'green',
+          width: '100px',
+          height: '120px',
           transform: 'scale(1)'
         }
       )),
       state('delay', style(
         {
-          backgroundColor: 'red',
+          backgroundColor: 'blue',
+          width: '100px',
+          height: '120px',
           transform: 'scale(.5)',
           borderRadius: '75px'
         }
       )),
       state('easing', style(
         {
-          backgroundColor: 'green',
+          backgroundColor: 'purple',
+          width: '100px',
+          height: '120px',
           transform: 'scale(.2)',
 
         }
@@ -72,6 +80,8 @@ export class MorphButtonsPageComponent implements OnInit {
         {
           backgroundColor: 'yellow',
           transform: 'scale(1)',
+          width: '100px',
+          height: '120px',
           // borderColor: 'green',
           // borderThickness: '2px',
           // borderStyle: 'solid'
@@ -79,6 +89,7 @@ export class MorphButtonsPageComponent implements OnInit {
         }
       )),
       // transition('original => basic, easing => basic, delay => basic', animate('800ms')),
+
       transition('* => original', animate('200ms')),
       transition('* => basic', animate('200ms')),
       transition('* => delay', animate('400ms 1000ms ease-out')),
