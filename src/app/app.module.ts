@@ -126,6 +126,7 @@ const appRoutes: Routes = [
     ChildRoutesModule,
     ResusableModule
   ],
+
   providers: [BirtService, DataService],
   bootstrap: [AppComponent]
 })

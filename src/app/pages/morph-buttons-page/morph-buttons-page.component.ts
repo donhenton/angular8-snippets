@@ -1,30 +1,32 @@
 
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, HostListener, ElementRef, Renderer2, HostBinding } from '@angular/core';
 // import { MorphButtonComponent } from 'app/components/morph-button/morph-button.component';
-import { trigger, style, transition, animate, group, state } from '@angular/animations';
+import { trigger, style, transition, animate, group, state, keyframes } from '@angular/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @Component({
   selector: 'app-morph-buttons-page',
   templateUrl: './morph-buttons-page.component.html',
-  styleUrls: ['./morph-buttons-page.component.scss']
+  styleUrls: ['./morph-buttons-page.component.scss'],
 })
 
 export class MorphButtonsPageComponent implements OnInit {
 
 
-  animateChoices = {choice: 'basic'};
+  animateChoices = { choice: 'basic' };
 
   // @ViewChild('morphButton') morphButton: MorphButtonComponent;
   constructor() {
 
-   }
+  }
 
   ngOnInit() {
   }
 
   chooseAnimation(anim) {
     // click action for radios, occurs before the ngModel value set
-   // console.log(`anim ${anim} choices ${this.animateChoices.choice}`)
+    // console.log(`anim ${anim} choices ${this.animateChoices.choice}`)
 
   }
 
@@ -34,59 +36,104 @@ export class MorphButtonsPageComponent implements OnInit {
 
 @Component({
   selector: 'app-animbox',
-  template: `<div [@changeState]="currentState" class="mybox"></div>`,
+  template: `<div   class="mybox"></div>`,
+  // template: `<div [@changeState]="currentState" class="mybox"></div>`,
   styleUrls: ['./morph-buttons-page.component.scss'],
   animations: [
     trigger('changeState', [
 
-        state('basic', style(
-          {
-            backgroundColor: '#440000',
-            transform: 'scale(.4)'
-          }
-        )),
-        state('original', style(
-          {
-            backgroundColor: '#47748f',
-            transform: 'scale(1)'
-          }
-        )),
-        state('delay', style(
-          {
-            backgroundColor: 'red',
-            transform: 'scale(.5)',
-            borderRadius: '75px'
-          }
-        )),
-        state('easing', style(
-          {
-            backgroundColor: 'green',
-            transform: 'scale(1)',
+      state('basic', style(
+        {
+          backgroundColor: '#440000',
+          transform: 'scale(.4)'
+        }
+      )),
+      state('original', style(
+        {
+          backgroundColor: '#47748f',
+          transform: 'scale(1)'
+        }
+      )),
+      state('delay', style(
+        {
+          backgroundColor: 'red',
+          transform: 'scale(.5)',
+          borderRadius: '75px'
+        }
+      )),
+      state('easing', style(
+        {
+          backgroundColor: 'green',
+          transform: 'scale(.2)',
 
-          }
-        )),
+        }
+      )),
+      state('stepped', style(
+        {
+          backgroundColor: 'yellow',
+          transform: 'scale(1)',
+          // borderColor: 'green',
+          // borderThickness: '2px',
+          // borderStyle: 'solid'
 
-       // transition('original => basic, easing => basic, delay => basic', animate('800ms')),
-        transition('* => original', animate('200ms')),
-        transition('* => basic', animate('200ms')),
-        transition('* => delay', animate('400ms 1000ms ease-out')),
-        transition('* => easing', animate('700ms ease-in-out'))
+        }
+      )),
+      // transition('original => basic, easing => basic, delay => basic', animate('800ms')),
+      transition('* => original', animate('200ms')),
+      transition('* => basic', animate('200ms')),
+      transition('* => delay', animate('400ms 1000ms ease-out')),
+      transition('* => easing', animate('700ms ease-in-out')),
 
+      transition('* => stepped', animate('1300ms ease-out', keyframes([
+        style({ backgroundColor: 'red', transform: 'scale(1.4)', offset: 0.0 }),
+        style({ backgroundColor: 'white', transform: 'scale(1)', offset: 0.6 }),
+        style({ backgroundColor: 'blue', transform: 'scale(1.4)', offset: 1.0 })
+      ])))
 
     ])
 
 
 
+    // https://embed.plnkr.co/plunk/HhI9sS
+
+
+    // https://medium.com/codingthesmartway-com-blog/angular-6-animations-from-scratch-76e110cba5fb
+    // https://stackoverflow.com/questions/53049799/angular-4-keyframe-animation-stay-on-last-position
+    // https://coursetro.com/posts/code/63/Angular-4-Animation-Tutorial
+    // https://codecraft.tv/courses/angular/custom-directives/hostlistener-and-hostbinding/
 
   ]
 })
 export class AnimboxComponent implements OnInit {
 
-  @Input() currentState ;
+  @Input() currentState;
   @Output() eventItem = new EventEmitter<string>();
-  private counter = 0;
-  ngOnInit(): void {
 
+
+  private counter = 0;
+
+
+  constructor(private el: ElementRef,
+    private renderer: Renderer2) {
+
+  }
+
+  ngOnInit(): void {
+   // console.log(this.el)
+  }
+
+
+   @HostBinding('@changeState') get changeState () {
+     return this.currentState;
+   }
+
+  @HostListener('@changeState.done', ['$event']) endTimes(ev) {
+    console.log('done')
+    console.log(ev)
+  }
+  @HostListener('@changeState.start', ['$event']) startTimes(ev) {
+    console.log('start')
+    console.log(ev)
   }
 
 
