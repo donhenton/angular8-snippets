@@ -39,9 +39,9 @@ import { ToolTipPageComponent } from './pages/tool-tip/tool-tip-page.component';
 import { AsyncValidatorComponent } from './pages/async-validator/async-validator.component';
 import { ReplayPageComponent } from './pages/reactive-demos/replay-page/replay-page.component';
 import { NoBozosDirective } from './pages/udemy/template-form/no-bozos.directive';
-import { MorphButtonsPageComponent, AnimboxComponent } from './pages/morph-buttons-page/morph-buttons-page.component';
+import { AnimationsPageComponent, AnimboxComponent } from './pages/animations-page/animations-page.component';
 import { MorphButtonComponent  } from './components/morph-button/morph-button.component';
-
+import { MorphButtonsPageComponent  } from './pages/morph-buttons-page/morph-buttons-page.component';
 
 
 // https://juristr.com/blog/2017/07/ng2-dynamic-tab-component/
@@ -54,12 +54,13 @@ import { MorphButtonComponent  } from './components/morph-button/morph-button.co
 const appRoutes: Routes = [
   { path: 'pipes', component: PipePageComponent },
   { path: 'tabDemo', component: TabDemoComponent },
-  { path: 'morphButton', component: MorphButtonsPageComponent  },
+  { path: 'animations', component: AnimationsPageComponent  },
   { path: 'includes', component: IncludePageComponent },
   { path: 'directives', component: StandardDirectiveComponent },
   { path: 'debugging', component: DebuggingPageComponent },
   { path: 'simpleReactive', component: SimpleReactiveComponent },
   { path: 'replayDemo', component: ReplayPageComponent },
+  { path: 'morpButton', component: MorphButtonsPageComponent },
   // pre-fetch data via resolve
   {
     path: 'birtDemo', component: BirtDemoComponent, resolve: { officeList: BirtService }
@@ -113,8 +114,9 @@ const appRoutes: Routes = [
     ToolTipPageComponent,
     AsyncValidatorComponent,
     ReplayPageComponent,
-    MorphButtonsPageComponent,
-    MorphButtonComponent
+    AnimationsPageComponent,
+    MorphButtonComponent,
+    MorphButtonsPageComponent
   ],
   imports: [
     FormsModule,
