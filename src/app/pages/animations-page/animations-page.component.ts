@@ -95,9 +95,20 @@ export class AnimationsPageComponent implements OnInit {
           transform: 'scale(1)',
           width: '100px',
           height: '120px',
+          borderRadius: '75px'
           // borderColor: 'green',
           // borderThickness: '2px',
           // borderStyle: 'solid'
+
+        }
+      )),
+      // state defines where you end up at the end of the animation
+      state('parallel', style(
+        {
+          backgroundColor: 'red',
+          transform: 'scale(0.4)',
+          width: '100px',
+          height: '120px'
 
         }
       )),
@@ -110,14 +121,58 @@ export class AnimationsPageComponent implements OnInit {
 
       transition('delay => stepped', animate('1300ms ease-out', keyframes([
         style({ backgroundColor: 'red', transform: 'scale(1.4)', offset: 0.0 }),
-        style({ backgroundColor: 'tan', transform: 'scale(1)', offset: 0.6 }),
-        style({ backgroundColor: 'blue', transform: 'scale(1.4)', offset: 1.0 })
-      ])))
+        style({ backgroundColor: 'tan', transform: 'scale(1)', offset: 0.4 }),
+        style({ backgroundColor: 'purple', transform: 'scale(1)', offset: 0.6 }),
+        style({ backgroundColor: 'yellow', transform: 'scale(1.4)', offset: 1.0 })
+      ]))),
+
+      transition('basic => parallel', [
+
+        group([
+          animate('2s ease', style({
+            backgroundColor: 'black'
+
+          })),
+          animate('0.5s 2s ease', style({
+            backgroundColor: 'red',
+            transform: 'scale(0.4)'
+          }))
+
+        ])
+
+
+      ]),
+
 
     ])
 
+    /*
+     group([
+              animate('1000ms ease-out', style({
+                backgroundColor: 'brick',
+                transform: 'scale(1.0)'
+              })),
+              animate('2000ms 1000ms ease-out', style({
+                backgroundColor: 'brick',
+                 transform: 'scale(0.8)'
+              }))
+
+            ])
+
+    */
 
 
+
+
+
+    /*
+        animate('0.2s ease', style({
+          transform: 'translate(150px,25px)'
+        })),
+        animate('0.5s 0.2s ease', style({
+          opacity: 0
+        }))
+    */
     // https://embed.plnkr.co/plunk/HhI9sS
 
 
