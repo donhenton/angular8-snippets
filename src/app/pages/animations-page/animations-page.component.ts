@@ -15,6 +15,7 @@ export class AnimationsPageComponent implements OnInit {
 
 
   animateChoices = { choice: 'basic' };
+  animEventMessage = { start: null, done: null };
 
   // @ViewChild('morphButton') morphButton: MorphButtonComponent;
   constructor() {
@@ -27,6 +28,18 @@ export class AnimationsPageComponent implements OnInit {
   chooseAnimation(anim) {
     // click action for radios, occurs before the ngModel value set
     // console.log(`anim ${anim} choices ${this.animateChoices.choice}`)
+
+  }
+
+  listenForAnimation(ev) {
+
+    if (ev.phaseName === 'start') {
+      this.animEventMessage.start = `start animation state from ${ev.fromState}
+      to ${ev.toState} time ${ev.totalTime} for trigger ${ev.triggerName}`;
+    } else {
+      this.animEventMessage.done = `done animation state from ${ev.fromState}
+      to ${ev.toState} time ${ev.totalTime} for trigger ${ev.triggerName}`;
+    }
 
   }
 
@@ -91,7 +104,7 @@ export class AnimationsPageComponent implements OnInit {
       // transition('original => basic, easing => basic, delay => basic', animate('800ms')),
 
       transition('basic => original', animate('200ms')),
-     // transition('* => basic', animate('200ms')),
+      // transition('* => basic', animate('200ms')),
       transition('easing => delay', animate('400ms 1000ms ease-out')),
       transition('original => easing', animate('700ms ease-in-out')),
 
@@ -118,7 +131,7 @@ export class AnimationsPageComponent implements OnInit {
 export class AnimboxComponent implements OnInit {
 
   @Input() currentState;
-  @Output() eventItem = new EventEmitter<string>();
+  @Output() animEvent = new EventEmitter<string>();
 
 
   private counter = 0;
@@ -130,21 +143,19 @@ export class AnimboxComponent implements OnInit {
   }
 
   ngOnInit(): void {
-   // console.log(this.el)
+    // console.log(this.el)
   }
 
 
-   @HostBinding('@changeState') get changeState () {
-     return this.currentState;
-   }
+  @HostBinding('@changeState') get changeState() {
+    return this.currentState;
+  }
 
   @HostListener('@changeState.done', ['$event']) endTimes(ev) {
-    console.log('done')
-    console.log(ev)
+    this.animEvent.emit(ev);
   }
   @HostListener('@changeState.start', ['$event']) startTimes(ev) {
-    console.log('start')
-    console.log(ev)
+    this.animEvent.emit(ev);
   }
 
 

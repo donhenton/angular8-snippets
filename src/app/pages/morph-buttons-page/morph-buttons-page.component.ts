@@ -28,32 +28,4 @@ export class MorphButtonsPageComponent implements OnInit {
 }
 
 
-@Component({
-  selector: 'app-animbox',
-  template: ``,
-  // template: `<div [@changeState]="currentState" class="mybox"></div>`,
-  styleUrls: ['./morph-buttons-page.component.scss'],
-})
-export class AnimboxComponent implements OnInit {
-
-  @Input() currentState;
-  @Output() eventItem = new EventEmitter<string>();
-
-
-  private counter = 0;
-
-
-  constructor(private el: ElementRef,
-    private renderer: Renderer2) {
-
-  }
-
-  ngOnInit(): void {
-
-  }
-
-
-
-
-}
 
