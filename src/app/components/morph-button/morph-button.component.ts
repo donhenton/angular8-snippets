@@ -85,10 +85,11 @@ export class MorphButtonComponent implements OnInit {
   addBorder() {
 
     this.currentState = STATE.incBorder;
-    window.setTimeout(() => {
-      this.currentState = STATE.rotateSpinner;
-    }, 25)
 
+    const caller = Observable.of(null).delay(25);
+    caller.subscribe((e) => {
+      this.currentState = STATE.rotateSpinner;
+    })
 }
 
 
