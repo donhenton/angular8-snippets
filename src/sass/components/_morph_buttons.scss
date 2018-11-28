@@ -101,6 +101,20 @@
         font-size: 30px;
         text-align: center;
         opacity: 1;
+
+
+        &.fade-text {
+
+
+          animation: fade-text;
+          animation-timing-function: linear;
+          animation-fill-mode: both;
+          animation-duration: $duration/6;
+
+        }
+
+
+
       }
 
 
@@ -123,15 +137,6 @@
 
 
 
-    .fade-text {
-
-
-      animation: fade-text;
-      animation-timing-function: linear;
-      animation-fill-mode: both;
-      animation-duration: $duration/6;
-
-    }
 
 
     @keyframes finalize {

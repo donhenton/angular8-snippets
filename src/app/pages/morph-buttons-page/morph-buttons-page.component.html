@@ -7,7 +7,7 @@
 
     <div class="general-container">
         
-
+      <app-morph-button (submitCallback)="this.buttonListener($event)" #morphButton></app-morph-button>
      
     </div>
 
@@ -15,8 +15,8 @@
 
 
   <div class="column50Right">
- fred
-
+  
+    <h3 [hidden]="!this.taskComplete">Task Complete</h3>
 
 
   </div>
