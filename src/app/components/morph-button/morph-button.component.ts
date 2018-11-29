@@ -1,6 +1,5 @@
 
-import { Component, OnInit, Input, Output, EventEmitter, HostListener, ElementRef, Renderer2, ViewChild } from '@angular/core';
-import { trigger, style, transition, animate, query, state, keyframes } from '@angular/animations';
+import { Component, OnInit, Input, Output, EventEmitter, HostListener, ElementRef, Renderer2 } from '@angular/core';
 import {BUTTON_STATE} from '../../constants/constants';
 import { Observable } from 'rxjs/Rx'; // for all
 export enum STATE {
