@@ -1,0 +1,42 @@
+<h3>Basic Animations</h3>
+
+<div class="row grouping">
+
+  <div class="column50Left">
+
+
+    <div class="general-container">
+        
+<app-animbox (animEvent)="this.listenForAnimation($event)" [currentState]="this.animateChoices.choice"></app-animbox>
+     
+    </div>
+
+  </div>
+
+
+  <div class="column50Right">
+    <div class="row">
+      <em>transitions always take place but animations will only occur when transition rules exist</em>
+    </div>
+
+     <table class="table table-striped">
+      <tr><td><input type="radio" name="type" (click)="chooseAnimation('basic')" [(ngModel)]="animateChoices.choice"    [value]="'basic'" required></td> <td>Basic</td></tr>
+      <tr><td><input type="radio" name="type" (click)="chooseAnimation('original')" [(ngModel)]="animateChoices.choice"    [value]="'original'" required></td> <td>Original</td></tr>
+      <tr><td><input type="radio" name="type" (click)="chooseAnimation('easing')" [(ngModel)]="animateChoices.choice"    [value]="'easing'" required></td> <td>Easing</td></tr>
+      <tr><td><input type="radio" name="type" (click)="chooseAnimation('delay')"[(ngModel)]="animateChoices.choice"    [value]="'delay'" required></td> <td>Delay</td></tr>
+      <tr><td><input type="radio" name="type" (click)="chooseAnimation('stepped')"[(ngModel)]="animateChoices.choice"    [value]="'stepped'" required></td> <td>Stepped</td></tr>
+      <tr><td><input type="radio" name="type" (click)="chooseAnimation('parallel')"[(ngModel)]="animateChoices.choice"    [value]="'parallel'" required></td> <td>Parallel</td></tr>
+     </table>
+    <div class="row">
+      <ul>
+        <li> {{this.animEventMessage.start}}</li>
+        <li> {{this.animEventMessage.done}}</li>
+      </ul>
+    
+    </div>
+ 
+
+  </div>
+
+
+</div>

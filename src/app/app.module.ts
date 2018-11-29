@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -38,7 +39,9 @@ import { ToolTipPageComponent } from './pages/tool-tip/tool-tip-page.component';
 import { AsyncValidatorComponent } from './pages/async-validator/async-validator.component';
 import { ReplayPageComponent } from './pages/reactive-demos/replay-page/replay-page.component';
 import { NoBozosDirective } from './pages/udemy/template-form/no-bozos.directive';
-
+import { AnimationsPageComponent, AnimboxComponent } from './pages/animations-page/animations-page.component';
+import { MorphButtonComponent  } from './components/morph-button/morph-button.component';
+import { MorphButtonsPageComponent  } from './pages/morph-buttons-page/morph-buttons-page.component';
 
 
 // https://juristr.com/blog/2017/07/ng2-dynamic-tab-component/
@@ -51,11 +54,13 @@ import { NoBozosDirective } from './pages/udemy/template-form/no-bozos.directive
 const appRoutes: Routes = [
   { path: 'pipes', component: PipePageComponent },
   { path: 'tabDemo', component: TabDemoComponent },
+  { path: 'animations', component: AnimationsPageComponent  },
   { path: 'includes', component: IncludePageComponent },
   { path: 'directives', component: StandardDirectiveComponent },
   { path: 'debugging', component: DebuggingPageComponent },
   { path: 'simpleReactive', component: SimpleReactiveComponent },
   { path: 'replayDemo', component: ReplayPageComponent },
+  { path: 'morpButton', component: MorphButtonsPageComponent },
   // pre-fetch data via resolve
   {
     path: 'birtDemo', component: BirtDemoComponent, resolve: { officeList: BirtService }
@@ -87,6 +92,7 @@ const appRoutes: Routes = [
     QueryRoutePageComponent,
     SubRoutePageComponent,
     LinkActivePageComponent,
+    AnimboxComponent,
     // MainChildComponent,
     // AlphaChildComponent,
     // BetaChildComponent,
@@ -107,17 +113,22 @@ const appRoutes: Routes = [
     BirtDemoComponent,
     ToolTipPageComponent,
     AsyncValidatorComponent,
-    ReplayPageComponent
+    ReplayPageComponent,
+    AnimationsPageComponent,
+    MorphButtonComponent,
+    MorphButtonsPageComponent
   ],
   imports: [
     FormsModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
     HttpModule,
     BrowserModule,
     RouterModule.forRoot(appRoutes),
     ChildRoutesModule,
     ResusableModule
   ],
+
   providers: [BirtService, DataService],
   bootstrap: [AppComponent]
 })

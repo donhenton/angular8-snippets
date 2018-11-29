@@ -1,0 +1,12 @@
+<div class='morph-button morph-container'>
+
+
+  <div (click)=(this.clickAction($event)) [ngClass]="this.getContainerClassState()">
+      <span [ngClass]="this.getTextClassState()" >{{this.buttonText}}</span>
+      <span  [ngClass]="this.getMarkerClassState()" ></span>
+
+  </div>
+
+
+
+</div>

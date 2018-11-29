@@ -1,0 +1,25 @@
+<h3>Morph Button Demos</h3>
+
+<div class="row grouping">
+
+  <div class="column50Left">
+
+
+    <div class="general-container">
+        
+      <app-morph-button (submitCallback)="this.buttonListener($event)" #morphButton></app-morph-button>
+     
+    </div>
+
+  </div>
+
+
+  <div class="column50Right">
+  
+    <h3 [hidden]="!this.taskComplete">Task Complete</h3>
+
+
+  </div>
+
+
+</div>
