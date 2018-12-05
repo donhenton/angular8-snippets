@@ -1,15 +1,9 @@
 
 import {
-  Component, OnInit, Input, Output, EventEmitter, HostListener,
-  ElementRef, Renderer2, HostBinding, ViewChild, AfterViewInit
+  Component, OnInit, ViewChild, AfterViewInit
 } from '@angular/core';
-// import { MorphButtonComponent } from 'app/components/morph-button/morph-button.component';
-import { trigger, style, transition, animate, group, state, keyframes } from '@angular/animations';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MorphButtonComponent } from 'app/components/morph-button/morph-button.component';
-import { BUTTON_STATE } from '../../constants/constants';
+import { MorphButtonComponent, BUTTON_STATE } from 'app/components/morph-button/morph-button.component';
 import { Observable } from 'rxjs/Rx'; // for all
-// import {  delay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-morph-buttons-page',
@@ -30,16 +24,20 @@ export class MorphButtonsPageComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    // console.log(this.morphButton)
+    // console.log(this.morphButton) just testing that viewchild worked
   }
 
-
+/**
+ * this is the routine that will listen to the state of the button and act accordingly
+ * @param ev
+ */
   buttonListener(ev) {
 
     if (ev.buttonState === BUTTON_STATE.waiting) {
-
+      // perform your ajax call or whatever
       const caller = Observable.of(null).delay(1500);
       caller.subscribe((e) => {
+        // when async call is finished call moveToFinish
         this.morphButton.moveToFinish();
       })
 
@@ -47,6 +45,7 @@ export class MorphButtonsPageComponent implements OnInit, AfterViewInit {
     }
 
     if (ev.buttonState === BUTTON_STATE.done) {
+      // animation in final state so handle final state for whole page
       this.taskComplete = true;
 
     }

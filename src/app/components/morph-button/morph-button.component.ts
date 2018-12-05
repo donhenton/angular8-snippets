@@ -1,13 +1,16 @@
 
 import { Component, OnInit, Input, Output, EventEmitter, HostListener, ElementRef, Renderer2 } from '@angular/core';
-import {BUTTON_STATE} from '../../constants/constants';
 import { Observable } from 'rxjs/Rx'; // for all
-export enum STATE {
+enum INTERNAL_STATE {
   initial,
   begin,
   incBorder,
   rotateSpinner,
   finalize
+}
+
+export enum BUTTON_STATE {
+  waiting, done
 }
 
 @Component({
@@ -19,7 +22,7 @@ export class MorphButtonComponent implements OnInit {
 
 
 
-  currentState: STATE = STATE.initial;
+  currentState: INTERNAL_STATE = INTERNAL_STATE.initial;
   @Input() buttonText = 'Submit';
   @Output() submitCallback = new EventEmitter<any>();
   constructor(private el: ElementRef,
@@ -32,19 +35,19 @@ export class MorphButtonComponent implements OnInit {
 
   getContainerClassState() {
     const baseClass = 'morphing-indicator-button';
-    if (this.currentState === STATE.initial) {
+    if (this.currentState === INTERNAL_STATE.initial) {
       return baseClass;
     }
-    if (this.currentState === STATE.begin) {
+    if (this.currentState === INTERNAL_STATE.begin) {
       return baseClass + ' blue-button-to-circle';
     }
-    if (this.currentState === STATE.incBorder) {
+    if (this.currentState === INTERNAL_STATE.incBorder) {
       return baseClass + ' blue-button-to-circle inc-border';
     }
-    if (this.currentState === STATE.rotateSpinner) {
+    if (this.currentState === INTERNAL_STATE.rotateSpinner) {
       return baseClass + ' blue-button-to-circle inc-border rotate-spinner';
     }
-    if (this.currentState === STATE.finalize) {
+    if (this.currentState === INTERNAL_STATE.finalize) {
       return baseClass + ' blue-button-to-circle inc-border rotate-spinner finalize';
     }
 
@@ -52,11 +55,11 @@ export class MorphButtonComponent implements OnInit {
 
   getTextClassState() {
     const baseClass = 'button-text';
-    if (this.currentState === STATE.initial) {
+    if (this.currentState === INTERNAL_STATE.initial) {
       return baseClass;
     }
 
-    if (this.currentState > STATE.initial) {
+    if (this.currentState > INTERNAL_STATE.initial) {
 
       return baseClass + ' fade-text';
     }
@@ -65,7 +68,7 @@ export class MorphButtonComponent implements OnInit {
 
   getMarkerClassState() {
     const baseClass =  'complete-marker fi-check';
-    if (this.currentState === STATE.finalize) {
+    if (this.currentState === INTERNAL_STATE.finalize) {
       return baseClass + ' show-checkmark';
     }
     return baseClass;
@@ -74,8 +77,8 @@ export class MorphButtonComponent implements OnInit {
 
   clickAction(ev) {
 
-    if (this.currentState === STATE.initial) {
-      this.currentState = STATE.begin;
+    if (this.currentState === INTERNAL_STATE.initial) {
+      this.currentState = INTERNAL_STATE.begin;
 
     }
 
@@ -83,18 +86,18 @@ export class MorphButtonComponent implements OnInit {
   }
   addBorder() {
 
-    this.currentState = STATE.incBorder;
+    this.currentState = INTERNAL_STATE.incBorder;
 
     const caller = Observable.of(null).delay(25);
     caller.subscribe((e) => {
-      this.currentState = STATE.rotateSpinner;
+      this.currentState = INTERNAL_STATE.rotateSpinner;
     })
 }
 
 
   public moveToFinish() {
 
-    this.currentState = STATE.finalize;
+    this.currentState = INTERNAL_STATE.finalize;
 
 }
 
