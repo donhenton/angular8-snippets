@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  securityAPIURL: 'https://donhenton-spring-boot.herokuapp.com/sec/',
-  birtAPIURL: 'https://donhenton-spring-boot.herokuapp.com/birt/',
-  swaggerUrl: 'https://donhenton-spring-boot.herokuapp.com/swagger-ui.html'
+  securityAPIURL: 'http://birt.awsdhenton.com/sec/',
+  birtAPIURL: 'http://birt.awsdhenton.com/birt/',
+  swaggerUrl: 'http://birt.awsdhenton.com/swagger-ui.html'
 };
