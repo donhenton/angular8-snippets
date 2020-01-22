@@ -2,7 +2,7 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.1.0.
 It is available for display at https://snippets.awsdhenton.com
-##Install Angular ng client
+## Install Angular ng client
 
 npm install -g @angular/cli
 
