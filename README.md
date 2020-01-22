@@ -1,8 +1,7 @@
 # Angular 8 Snippets
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.1.0.
-It is available for display at https://donhenton.github.io/angular4-snippets/public_html
-
+It is available for display at https://snippets.awsdhenton.com
 ##Install Angular ng client
 
 npm install -g @angular/cli
