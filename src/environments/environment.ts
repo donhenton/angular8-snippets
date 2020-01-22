@@ -6,7 +6,7 @@
 
 export const environment = {
   production: false,
-  securityAPIURL: 'http://localhost:9000/sec/',
-  birtAPIURL: 'http://localhost:9000/birt/',
-  swaggerUrl: 'http://localhost:9000/swagger-ui.html'
+  securityAPIURL: 'http://birt.awsdhenton.com/sec/',
+  birtAPIURL: 'http://birt.awsdhenton.com/birt/',
+  swaggerUrl: 'http://birt.awsdhenton.com/swagger-ui.html'
 };
