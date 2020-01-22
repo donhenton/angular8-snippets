@@ -15,7 +15,7 @@ export class BirtDemoComponent implements OnInit {
   // https://netbasal.com/angular-2-deal-with-different-form-controls-cheat-sheet-template-vs-model-4c77864cc16b
   // this is for checkboxes in dynamic forms links to template forms
 
-  @ViewChild('employeeForm') employeeForm: NgForm;
+  @ViewChild('employeeForm',{ static: false }) employeeForm: NgForm;
   selectedOffice: Office;
   selectedOfficeCode = null;
   officeList: Office[] = [];

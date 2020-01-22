@@ -13,7 +13,7 @@ import { Observable } from 'rxjs/Rx'; // for all
 
 export class MorphButtonsPageComponent implements OnInit, AfterViewInit {
 
-  @ViewChild('morphButton') morphButton: MorphButtonComponent;
+  @ViewChild('morphButton',{ static: false }) morphButton: MorphButtonComponent;
 
   taskComplete = false;
   constructor() {

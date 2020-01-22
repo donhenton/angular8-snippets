@@ -35,9 +35,9 @@ export class ServerElementComponent implements
   @Input('srvElement') element: {type: string, name: string, content: string};
   @Input() name: string;
   // references to the view
-  @ViewChild('heading') header: ElementRef;
+  @ViewChild('heading',{ static: false }) header: ElementRef;
   // references to stuff via ng-content
-  @ContentChild('contentParagraph') paragraph: ElementRef;
+  @ContentChild('contentParagraph',{static: false}) paragraph: ElementRef;
 
   constructor() {
    // console.log('constructor called!');

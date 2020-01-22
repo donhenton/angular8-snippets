@@ -9,7 +9,7 @@ import { NgForm } from '@angular/forms';
 })
 export class TemplateFormComponent implements OnInit {
 
-  @ViewChild('viewChildRefToForm') signupForm: NgForm;
+  @ViewChild('viewChildRefToForm',{ static: false }) signupForm: NgForm;
   defaultQuestion = 'teacher';
   answer = '';
   genders = ['male', 'female', 'unknown'];

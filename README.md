@@ -50,3 +50,15 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Source of Samples
 http://www.concretepage.com/angular-2/
+
+
+
+## Update of ViewChild to 8
+
+// query results available in ngOnInit
+@ViewChild('foo', {static: true}) foo: ElementRef;
+
+OR
+
+// query results available in ngAfterViewInit
+@ViewChild('foo', {static: false}) foo: ElementRef;
