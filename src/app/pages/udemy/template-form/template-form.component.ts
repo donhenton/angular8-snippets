@@ -9,7 +9,7 @@ import { NgForm } from '@angular/forms';
 })
 export class TemplateFormComponent implements OnInit {
 
-  @ViewChild('viewChildRefToForm',{ static: false }) signupForm: NgForm;
+  @ViewChild('viewChildRefToForm',{ static: true }) signupForm: NgForm;
   defaultQuestion = 'teacher';
   answer = '';
   genders = ['male', 'female', 'unknown'];
@@ -35,7 +35,7 @@ export class TemplateFormComponent implements OnInit {
   }
 
   handleFormChanges(data) {
-    // console.log(data)
+     // console.log(data)
   }
 
   checkForBozos() {
@@ -58,7 +58,7 @@ export class TemplateFormComponent implements OnInit {
     this.user.email = this.signupForm.value.userData.email;
     this.user.secretQuestion = this.signupForm.value.secret;
     this.user.answer = this.signupForm.value.questionAnswer;
-    this.user.gender = this.signupForm.value.gender;
+    this.user.gender = this.signupForm.value.userData.gender;
     this.signupForm.reset();
     this.signupForm.form.patchValue({ secret: this.defaultQuestion });
   }
