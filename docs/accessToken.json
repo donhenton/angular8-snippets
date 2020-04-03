@@ -1,0 +1,9 @@
+{
+    "value": "eyJraWQiOiJkSDlGcXE0VkVaeEVHeVJFTUVBdnVBOWdfQjYzX0…V4RHo17nrIdP64I7rZBjUz1dI8znxcT3YJ2qr_UpZOJi8snQg",
+    "accessToken": "eyJraWQiOiJkSDlGcXE0VkVaeEVHeVJFTUVBdnVBOWdfQjYzX0…V4RHo17nrIdP64I7rZBjUz1dI8znxcT3YJ2qr_UpZOJi8snQg",
+    "expiresAt": 1585962166,
+    "tokenType": "Bearer",
+    "scopes": ["openid", "email", "profile", "groups"],
+    "authorizeUrl": "https://dev-862436.okta.com/oauth2/default/v1/authorize",
+    "userinfoUrl": "https://dev-862436.okta.com/oauth2/default/v1/userinfo"
+}

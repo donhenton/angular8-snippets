@@ -5,7 +5,7 @@ import * as OktaAuth from '@okta/okta-auth-js';
  
 
 // https://dzone.com/articles/add-authentication-to-your-angular-app
-
+// https://github.com/okta/okta-oidc-js/tree/master/packages/okta-angular#oktaauthservice
 
 @Injectable({
   providedIn: 'root'
@@ -41,6 +41,10 @@ export class OktaAuthService  {
     return !!(await this.oktaAuth.tokenManager.get('accessToken'));
   }
 
+
+
+
+
   login(originalUrl: any) {
     // Save current URL before redirect
     sessionStorage.setItem('okta-app-url', originalUrl || this.router.url);
@@ -51,8 +55,17 @@ export class OktaAuthService  {
     });
   }
 
+  getAccessToken() {
+    return this.oktaAuth.tokenManager.get('accessToken');
+  }
+
+  getIdToken() {
+    return this.oktaAuth.tokenManager.get('idToken');
+  }
+
   async handleAuthentication() {
     const parseResults = await this.oktaAuth.token.parseFromUrl();
+    // "accessToken", "idToken"
     const tokens = parseResults['tokens'];
     const tokenKeys = Object.keys(tokens);
     tokenKeys.forEach(key => {

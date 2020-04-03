@@ -3,13 +3,32 @@
 <div class="row">
     <div class="column50Left">
 
-        <ul>
-            <li><b>Logged In: </b> {{this.isAuthenticated}}</li>
+        <h4>Access Token</h4>
 
+        <blockquote>
+            <ul>
+                <li><b>Logged In: </b> {{this.isAuthenticated}}</li>
+                <li><b>Access Token Scope: </b> {{this.accessToken.scopes}}</li>
+                <li><b>Expires At: </b> {{this.accessToken.expiresAt}}</li>
+                <li><b>Decoded groups: </b> {{this.accessToken.decoded.groups}}</li>
+                <li><b>Decoded Sub: </b> {{this.accessToken.decoded.sub}}</li>
 
-        </ul>
+            </ul>
+        </blockquote>
+        <p>&nbsp;</p>
+        <h4>Id Token</h4>
 
+        <blockquote>
+            <ul>
 
+                <li><b>Id Token Scope: </b> {{this.idToken.scopes}}</li>
+                <li><b>Expires At: </b> {{this.idToken.expiresAt}}</li>
+                <li><b>Decoded Name: </b> {{this.idToken.decoded.name}}</li>
+                <li><b>Decoded UserName: </b> {{this.idToken.decoded.preferred_username}}</li>
+                <li><b>Decoded iat: </b> {{this.idToken.decoded.iat}}</li>
+                <li><b>Decoded exp: </b> {{this.idToken.decoded.exp}}</li>
+            </ul>
+        </blockquote>
 
     </div>
     <div class="column50Right">

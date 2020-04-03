@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OktaAuthService } from './../../services/okta.service';
+import * as JWT from 'jwt-decode';
 
 @Component({
   selector: 'app-protected',
@@ -9,24 +10,37 @@ import { OktaAuthService } from './../../services/okta.service';
 export class ProtectedComponent implements OnInit {
 
   isAuthenticated: boolean;
+  accessToken: any;
+  idToken: any;
 
-  constructor(private oktaAuth: OktaAuthService) {
-    this.oktaAuth.$isAuthenticated.subscribe(
-      (isAuthenticated: boolean) => this.isAuthenticated = isAuthenticated
-    );
+  constructor(private oktaAuthService: OktaAuthService) {
+    this.accessToken = 'garbage';
+    this.idToken = 'more garbage';
+    const process = this.loadAuthData.bind(this);
+    this.oktaAuthService.$isAuthenticated.subscribe(process);
+
+  }
+
+  async loadAuthData(isAuthenticated: boolean) {
+    this.isAuthenticated = isAuthenticated;
+     this.accessToken =  await this.oktaAuthService.getAccessToken();
+     this.idToken =   await this.oktaAuthService.getIdToken() ;
+     this.idToken.decoded = JWT( this.idToken.value);
+     this.accessToken.decoded = JWT( this.accessToken.value);
 
   }
 
   ngOnInit() {
 
-    this.oktaAuth.isAuthenticated().then((auth) => {
+    this.oktaAuthService.isAuthenticated().then((auth) => {
       this.isAuthenticated = auth;
+
     });
   }
   login() {
-    this.oktaAuth.login('/');
+    this.oktaAuthService.login('/');
   }
   logout() {
-    this.oktaAuth.logout();
+    this.oktaAuthService.logout();
   }
 }
