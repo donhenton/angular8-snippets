@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, Observer } from 'rxjs';
 import { Router } from '@angular/router';
 import * as OktaAuth from '@okta/okta-auth-js';
+ 
 
 // https://dzone.com/articles/add-authentication-to-your-angular-app
 
@@ -9,7 +10,7 @@ import * as OktaAuth from '@okta/okta-auth-js';
 @Injectable({
   providedIn: 'root'
 })
-export class OktaAuthService {
+export class OktaAuthService  {
   CLIENT_ID = '0oa50kbe3200zNvhk4x6';
   ISSUER = 'https://dev-862436.okta.com/oauth2/default'
   LOGIN_REDIRECT_URI = 'http://localhost:4200/callback';
@@ -27,6 +28,7 @@ export class OktaAuthService {
 
 
   constructor(private router: Router) {
+     
     this.$isAuthenticated = new Observable((observer: Observer<boolean>) => {
       this.observer = observer;
       this.isAuthenticated().then(val => {
@@ -58,7 +60,9 @@ export class OktaAuthService {
     });
 
     if (await this.isAuthenticated()) {
-      this.observer.next(true);
+      if(this.observer) {
+        this.observer.next(true);
+      }
     }
 
     // Retrieve the saved URL and navigate back

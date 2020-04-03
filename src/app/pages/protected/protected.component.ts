@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { OktaAuthService } from './../../services/okta.service';
 
 @Component({
   selector: 'app-protected',
@@ -7,9 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProtectedComponent implements OnInit {
 
-  constructor() { }
+  isAuthenticated: boolean;
 
-  ngOnInit() {
+  constructor(private oktaAuth: OktaAuthService) {
+    this.oktaAuth.$isAuthenticated.subscribe(
+      (isAuthenticated: boolean) => this.isAuthenticated = isAuthenticated
+    );
+
   }
 
+  ngOnInit() {
+
+    this.oktaAuth.isAuthenticated().then((auth) => {
+      this.isAuthenticated = auth;
+    });
+  }
+  login() {
+    this.oktaAuth.login('/');
+  }
+  logout() {
+    this.oktaAuth.logout();
+  }
 }
