@@ -5,7 +5,7 @@ export const environment = {
   swaggerUrl: 'http://birt.awsdhenton.com/swagger-ui.html',
   oktaClientId: '0oa50kbe3200zNvhk4x6',
   oktaIssuer: 'https://dev-862436.okta.com/oauth2/default',
-  loginRedirectUri: 'https://snippets.awsdhenton.com/snippets/callback',
-  logoutRedirectUri: 'https://snippets.awsdhenton.com/snippets/'
+  loginRedirectUri: 'https://snippets.awsdhenton.com/callback',
+  logoutRedirectUri: 'https://snippets.awsdhenton.com/'
 
 };
