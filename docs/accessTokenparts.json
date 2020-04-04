@@ -1,0 +1,16 @@
+{
+
+
+    "ver": 1,
+    "jti": "AT.VlbMF2DC9EFQwrf57CM6RFWTKBSo_YhBN2LglVLIZeI",
+    "iss": "https://dev-862436.okta.com/oauth2/default",
+    "aud": "api://default",
+    "iat": 1585933365,
+    "exp": 1585962165,
+    "cid": "0oa50kbe3200zNvhk4x6",
+    "uid": "00u2jahrbFvxaqeMg4x6",
+    "scp": ["email", "openid", "groups", "profile"],
+    "sub": "awsdhenton@gmail.com",
+    "groups": ["Everyone", "alpha", "users", "admins"],
+
+}

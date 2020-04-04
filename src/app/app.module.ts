@@ -11,7 +11,7 @@ import { MenuDirective } from './components/dropdown/menu.directive';
 import { QueryRoutePageComponent } from './pages/routing/query-route-page/query-route-page.component';
 import { SubRoutePageComponent } from './pages/routing/sub-route-page/sub-route-page.component';
 import { LinkActivePageComponent } from './pages/routing/link-active-page/link-active-page.component';
-import { ChildRoutesModule} from './pages/child-components/child-routes.module';
+import { ChildRoutesModule } from './pages/child-components/child-routes.module';
 // import { MainChildComponent } from './pages/child-components/main-child/main-child.component';
 // import { AlphaChildComponent } from './pages/child-components/alpha-child/alpha-child.component';
 // import { BetaChildComponent } from './pages/child-components/beta-child/beta-child.component';
@@ -40,8 +40,12 @@ import { AsyncValidatorComponent } from './pages/async-validator/async-validator
 import { ReplayPageComponent } from './pages/reactive-demos/replay-page/replay-page.component';
 import { NoBozosDirective } from './pages/udemy/template-form/no-bozos.directive';
 import { AnimationsPageComponent, AnimboxComponent } from './pages/animations-page/animations-page.component';
-import { MorphButtonComponent  } from './components/morph-button/morph-button.component';
-import { MorphButtonsPageComponent  } from './pages/morph-buttons-page/morph-buttons-page.component';
+import { MorphButtonComponent } from './components/morph-button/morph-button.component';
+import { MorphButtonsPageComponent } from './pages/morph-buttons-page/morph-buttons-page.component';
+import { CallbackComponent } from './pages/callback/callback.component';
+import { ProtectedComponent } from './pages/protected/protected.component';
+import { OktaGuard } from './guards/okta.guard';
+import { OktaAuthService } from './services/okta.service';
 
 
 // https://juristr.com/blog/2017/07/ng2-dynamic-tab-component/
@@ -54,7 +58,7 @@ import { MorphButtonsPageComponent  } from './pages/morph-buttons-page/morph-but
 const appRoutes: Routes = [
   { path: 'pipes', component: PipePageComponent },
   { path: 'tabDemo', component: TabDemoComponent },
-  { path: 'animations', component: AnimationsPageComponent  },
+  { path: 'animations', component: AnimationsPageComponent },
   { path: 'includes', component: IncludePageComponent },
   { path: 'directives', component: StandardDirectiveComponent },
   { path: 'debugging', component: DebuggingPageComponent },
@@ -76,6 +80,8 @@ const appRoutes: Routes = [
   { path: 'routing/linkActive', component: LinkActivePageComponent },
   { path: 'routing/linkActive/queryRoute', component: QueryRoutePageComponent },
   { path: 'routing/linkActive/queryRoute/:alpha/:beta', component: QueryRoutePageComponent },
+  { path: 'callback', component: CallbackComponent },
+  { path: 'protected', component: ProtectedComponent, canActivate: [OktaGuard] },
 
   { path: '', component: HomeComponent }
 ]
@@ -116,7 +122,9 @@ const appRoutes: Routes = [
     ReplayPageComponent,
     AnimationsPageComponent,
     MorphButtonComponent,
-    MorphButtonsPageComponent
+    MorphButtonsPageComponent,
+    CallbackComponent,
+    ProtectedComponent
   ],
   imports: [
     FormsModule,
@@ -129,7 +137,7 @@ const appRoutes: Routes = [
     ResusableModule
   ],
 
-  providers: [BirtService, DataService],
+  providers: [BirtService, DataService, OktaGuard, OktaAuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

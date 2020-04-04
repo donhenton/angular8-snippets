@@ -61,3 +61,11 @@ OR
 
 // query results available in ngAfterViewInit
 @ViewChild('foo', {static: false}) foo: ElementRef;
+
+## Redirecting programmatically
+
+* <https://www.bennadel.com/blog/3600-chaining-absolute-and-local-redirects-with-the-router-in-angular-7-2-13.htm>
+
+* <https://jasonwatmore.com/post/2016/12/08/angular-2-redirect-to-previous-url-after-login-with-auth-guard>
+
+* <https://www.jvandemo.com/the-7-step-process-of-angular-router-navigation/>
