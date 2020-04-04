@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, NavigationExtras, Params } from '@angular/router';
+import {environment} from '../../../../environments/environment';
 
 @Component({
   selector: 'app-link-active-page',
@@ -8,6 +9,7 @@ import { Router, ActivatedRoute, NavigationExtras, Params } from '@angular/route
 })
 export class LinkActivePageComponent implements OnInit {
 
+   myenv = environment;
   constructor(private router: Router, private route: ActivatedRoute) {
 
 
