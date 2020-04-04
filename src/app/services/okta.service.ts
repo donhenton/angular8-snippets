@@ -2,19 +2,23 @@ import { Injectable } from '@angular/core';
 import { Observable, Observer } from 'rxjs';
 import { Router } from '@angular/router';
 import * as OktaAuth from '@okta/okta-auth-js';
+import { environment } from '../../environments/environment';
  
 
 // https://dzone.com/articles/add-authentication-to-your-angular-app
 // https://github.com/okta/okta-oidc-js/tree/master/packages/okta-angular#oktaauthservice
+// private readonly URL_BASE = environment.birtAPIURL; // users/all
+
+ 
 
 @Injectable({
   providedIn: 'root'
 })
 export class OktaAuthService  {
-  CLIENT_ID = '0oa50kbe3200zNvhk4x6';
-  ISSUER = 'https://dev-862436.okta.com/oauth2/default'
-  LOGIN_REDIRECT_URI = 'http://localhost:4200/callback';
-  LOGOUT_REDIRECT_URI = 'http://localhost:4200/';
+  CLIENT_ID = environment.oktaClientId;
+  ISSUER = environment.oktaIssuer;
+  LOGIN_REDIRECT_URI = environment.loginRedirectUri;
+  LOGOUT_REDIRECT_URI = environment.logoutRedirectUri;
 
   oktaAuth = new OktaAuth({
     clientId: this.CLIENT_ID,

@@ -8,5 +8,9 @@ export const environment = {
   production: false,
   securityAPIURL: 'https://secbirt.awsdhenton.com/gateway/sec/',
   birtAPIURL: 'https://secbirt.awsdhenton.com/gateway/birt/',
-  swaggerUrl: 'http://birt.awsdhenton.com/swagger-ui.html'
+  swaggerUrl: 'http://birt.awsdhenton.com/swagger-ui.html',
+  oktaClientId: '0oa50kbe3200zNvhk4x6',
+  oktaIssuer: 'https://dev-862436.okta.com/oauth2/default',
+  loginRedirectUri: 'http://localhost:4200/callback',
+  logoutRedirectUri: 'http://localhost:4200/'
 };
